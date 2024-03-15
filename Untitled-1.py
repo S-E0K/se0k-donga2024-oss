@@ -74,7 +74,7 @@ a = seq(int(input("enter: ")))
 print("number is : ", a)
 
 # %%
-%%writefile bubbleSort.py
+# %%writefile bubbleSort.py
 def bubbleSort(arr):
     n = len(arr)
 
