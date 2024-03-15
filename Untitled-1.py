@@ -383,7 +383,7 @@ b = pd.DataFrame({
     'x1' : ['B', 'C', 'D'],
     'x3' : [2, 3, 4]
 })
-
+s
 print(a,'\n')
 print(b,'\n')
 print(pd.concat([a,b]), '\n')
