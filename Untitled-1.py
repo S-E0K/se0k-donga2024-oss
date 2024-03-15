@@ -386,8 +386,8 @@ b = pd.DataFrame({
 
 print(a,'\n')
 print(b,'\n')
-print(pd.concat([a,b]), '\n') # ㅁㄴㅇㄻㄴㅇㄹ
-print(pd.concat([a,b], axis=1), '\n') # ㅁ ㅁㄴㅇㄹ
+print(pd.concat([a,b]), '\n')
+print(pd.concat([a,b], axis=1), '\n')
 
 
 # %%
