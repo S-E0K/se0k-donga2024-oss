@@ -391,8 +391,6 @@ print(pd.concat([a,b], axis=1), '\n')
 
 
 # %%
-a = 12
-print(a)
 
 
 
