@@ -502,6 +502,73 @@ for i in range(len(T)):
 # %%
 
 
+print("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.")
+output1 = "\"재귀함수가 뭔가요?\""
+output2 = "\"잘 들어보게. 옛날옛날 한 산 꼭대기에 이세상 모든 지식을 통달한 선인이 있었어."
+output3 = "마을 사람들은 모두 그 선인에게 수많은 질문을 했고, 모두 지혜롭게 대답해 주었지."
+output4 = "그의 답은 대부분 옳았다고 하네. 그런데 어느 날, 그 선인에게 한 선비가 찾아와서 물었어.\""
+output5 = "----"
+output6 = ""
+output7 = "라고 답변하였지."
+# output 1 ~ 7 까지 문자 저장
+count = 0 # 입력받은 수를 따로 저장받기 위해 새 변수 생성
+a = input() # 반복할만큼 입력받음
+for i in range(int(a)): # a는 문자로 입력받기 때문에 int를 적어서 숫자로 변경
+    print(output6 + output1)
+    print(output6 + output2)
+    print(output6 + output3)
+    print(output6 + output4) # output6은 처음에 공란이기 때문에 이 사이클을 지나서
+    output6 += output5 # ---- 를 추가한다
+    count += 1 # 사이클이 돌아가는 만큼 count 증가
+print(output6 + output1) # 얘랑
+print(output6 + "\"재귀함수는 자기 자신을 호출하는 함수라네\"") # 얘는 반복되지 않기 때문에 사이클이랑 분리해놨다
+for i in range(int(a)): # 다시 입력받은 수 만큼 반복
+    output6 = "" # 여기는 count가 감소하기 때문에 초기화를 한다
+    for i in range(count): # count를 점차 감소시키기 위해 새로운 반복문 생성
+        output6 += output5 # 위에서 output이 공란이 되기 때문에 여기서 다시 추가한다
+    print(output6 + output7)
+    count -= 1 # count를 1씩 감소시킨다
+print(output7)
+
+
+
+
+
+# %%
+
+print("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.")
+output1 = "\"재귀함수가 뭔가요?\""
+output2 = "\"잘 들어보게. 옛날옛날 한 산 꼭대기에 이세상 모든 지식을 통달한 선인이 있었어."
+output3 = "마을 사람들은 모두 그 선인에게 수많은 질문을 했고, 모두 지혜롭게 대답해 주었지."
+output4 = "그의 답은 대부분 옳았다고 하네. 그런데 어느 날, 그 선인에게 한 선비가 찾아와서 물었어.\""
+output5 = "____"
+output6 = "라고 답변하였지."
+
+def loop1(a): # 재귀함수
+    global count # count값 전역함수로 받기 - 얘는 따로 카운트를 저장하기 때문에 global 선언 해야함
+    print(output5 * count + output1) # 5번 문자를 count 수 만큼 출력한다 문자열이라 곱셈 가능
+    if(count == a): # count 값이 입력받은 숫자와 같아지면 코드 출력
+        print(output5 * count + "\"재귀함수는 자기 자신을 호출하는 함수라네\"")
+    else: # count값이 입력받은 숫자보다 작을 때 여기 코드 반복
+        print(output5 * count + output2)
+        print(output5 * count + output3)
+        print(output5 * count + output4)
+        count += 1 # count 값을 1씩 올린다
+        loop1(a) 
+
+def loop2(count): # 재귀함수
+    if(count == 0): # count값이 0일 때
+        print(output6) # 출력하고 루프 탈출
+    else:
+        print(output5 * count + output6) # 라고 답변하였지 출력
+        count -= 1 # count값 1씩 줄이고
+        loop2(count) # 다시 루프
+
+    
+count = 0
+a = int(input()) # a값 숫자로 입력받는다
+loop1(a) # a값 넣는다
+loop2(count) # 여기는 count 값을 넣기 때문에 전역함수로 받을 필요 없음
 
 
 
@@ -510,14 +577,28 @@ for i in range(len(T)):
 # %%
 
 
+print("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.")
+output1 = "\"재귀함수가 뭔가요?\""
+output2 = "\"잘 들어보게. 옛날옛날 한 산 꼭대기에 이세상 모든 지식을 통달한 선인이 있었어."
+output3 = "마을 사람들은 모두 그 선인에게 수많은 질문을 했고, 모두 지혜롭게 대답해 주었지."
+output4 = "그의 답은 대부분 옳았다고 하네. 그런데 어느 날, 그 선인에게 한 선비가 찾아와서 물었어.\""
+output5 = "____"
+output6 = "라고 답변하였지."
 
+def loop(a, count): # 재귀함수
+    print(output5 * count + output1) # 5번 문자를 count 수 만큼 출력한다 문자열이라 곱셈 가능
+    if count == a: # count 값이 입력받은 숫자와 같아지면 코드 출력
+        print(output5 * count + "\"재귀함수는 자기 자신을 호출하는 함수라네\"")
+    else: # count값이 입력받은 숫자보다 작을 때 여기 코드 반복
+        print(output5 * count + output2)
+        print(output5 * count + output3)
+        print(output5 * count + output4)
+        loop(a, count + 1) # count 값을 1씩 올린다
+    # print(count)
+    print(output5 * count + output6) # 
 
-
-
-# %%
-
-
-
+a = int(input()) # a값 숫자로 입력받는다
+loop(a, 0) # a값 넣는다
 
 
 
