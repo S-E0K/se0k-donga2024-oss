@@ -392,12 +392,167 @@ print(pd.concat([a,b], axis=1), '\n')
 
 # %%
 
+def check(t):
+    global count # 전역변수 선언
+    if(t == S): # T와 S가 같아지면 
+        count = 1 # 1 값 저장
+        return # 재귀 탈출
+    if(len(t) <= len(S)): # T의 길이가 S 이하로 내려갈 때
+        count = 0 # 0 저장
+        return # 재귀 탈출
+    else: # 여기가 실질적인 재귀함수 작동구역
+        #print(t) # 
+        if(t[-1] == "A"): check(t[:-1]) # 재귀함수에서는 pop보다 이런 형식이 더 많이 보이는 것 같다 T[:-1]은 맨 뒤 함수를 빼고 리스트를 반환한다
+        if(t[0] == "B"): check(t[::-1][:-1]) # 얘도 reverse를 사용하려고 했는데 잘 안되가지고 바꿨다 t[::-1]은 간격을 -1로 설정해서 최종적으로 뒤집는 역할을 한다
+                                             # 이후에 [:-1]을 이용해 맨 뒤 함수를 빼고 리스트를 반환한다
+
+S = list(input()) # S 입력
+T = list(input()) # T 입력
+
+check(T) # t에 T 입력
+print(count) # 값 출력
+
+
+# %%
+
+# 수 많은 과정의 악수요청
+
+
+def check(t):
+    global count # 전역변수 선언
+    if(t == S): # T와 S가 같아지면 
+        count = 1 # 1 값 저장
+        return # 재귀 탈출
+    if(len(t) <= len(S)): # T의 길이가 S 이하로 내려갈 때
+        count = 0 # 0 저장
+        return # 재귀 탈출
+    else: # 여기가 실질적인 재귀함수 작동구역
+        #print(t) # 
+        if(t[-1] == "A"): check(t[:-1])
+        if(t[0] == "B"): check(t[::-1][:-1])
+
+S = list(input())
+T = list(input()) 
+
+check(T) # t에 T 입력
+print(count) # 값 출력
+
+
+
+
+A
+BABA
+
+if(len(S) > len(T)): print(0)
+else:
+    while(len(S) <= len(T)):
+        if(S == T):
+            print(1)
+            break
+        else:
+            if(T[-1] == "A"): 
+                T = first(T)
+            if:T = second(T)
+            print(T)
+    else: print(0)
+
+
+
+
+
+def first(a):
+    a.append("A")
+    return a
+
+def second(a):
+    a.append("B")
+    a = a.reverse()
+    return a
+
+S = input()
+A = S + 'A'
+B = S + "A"
+print(A)
+print(B)
+
+
+
+
+
+for i in range(len(T)):
+    if(len(S) > len(T)):
+        print(0)
+        break
+    if(S == T): 
+        print(1)
+        break
+    else:
+        if(T[len(S)] == "A"): first(S)
+        else: second(S)
+        
+    
+    
+
+    
+
 
 
 
 
 # %%
 
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+# %%
 
 
 
