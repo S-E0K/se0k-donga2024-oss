@@ -54,10 +54,10 @@ print(list1*2)
 import numpy as np
 a = np.array([1, 2, 3, 4, 5, 6, 7])
 
-print(a.sum())
-print(a.mean())
-print(a.var())
-print(a.std())
+print(a.sum()) # 합 
+print(a.mean()) # 평균
+print(a.var()) # 분산
+print(a.std()) # 표준편차
 print(a.min())
 print(a.max())
 print(a.cumsum())
@@ -601,6 +601,169 @@ a = int(input()) # a값 숫자로 입력받는다
 loop(a, 0) # a값 넣는다
 
 
+# %%
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+fish2 = np.array([2,3,3,4,4,4,4,5,5])
+print('합:', fish.sum(), np.sum(fish))
+print('개수:', fish.size, np.size(fish))
+print('평균:',fish.mean(), np.mean(fish) )
+print(fish.var())
+
+# %%
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+print('분산:',fish.var(), np.var(fish) )
+print('불편분산:',fish.var(ddof=1), np.var(fish, ddof=1) )
+print('표준편차:',fish.std(), np.std(fish) )
+print('불편표준편차:',fish.std(ddof=1), np.std(fish, ddof=1) )
+
+
+# %%
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+fish1 = [0, 0.25, 0.25, 0, 0, 0, 0, 0.75, 0.75, 1]
+fish2 = []
+
+for i in range(fish.__len__()):
+    fish2.append((fish[i] - fish.mean())/fish.std())
+
+print(fish2.var())
+
+
+
+# %%
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+fish1 = np.array([0, 0.25, 0.25, 0, 0, 0, 0, 0.75, 0.75, 1])
+fish2 = np.array([-1.83, -0.91, -0.91, 0.0, 0.0, 0.0, 0.0, 0.91, 0.91, 1.83])
+
+
+print(fish2.mean())
+
+
+
+
+
+# %%
+
+import numpy as np
+a = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(a.sum()) # 합 
+print(a.mean()) # 평균
+print(a.var()) # 분산
+print(a.std()) # 표준편차
+print(a.min())
+print(a.max())
+print(a.cumsum())
+print(a.cumprod())
+
+
+
+
+# %%
+
+import numpy as np
+import scipy.stats as ss
+
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+fish_s = (fish - fish.mean())/fish.std()
+
+print('표준화 후 배열', fish_s)
+print('표준화 후 평균', fish_s.mean())
+print('표준화 후 표준편차', fish_s.std()) # np이용
+
+
+# %%
+
+import numpy as np
+import scipy.stats as ss
+
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+
+fish_s = ss.zscore(fish) # ss 이용
+
+print('표준화 후 배열', fish_s)
+print('표준화 후 평균', fish_s.mean())
+print('표준화 후 표준편차', fish_s.std())
+
+
+
+# %%
+
+import numpy as np
+
+h = np.loadtxt('C:/Users/김보석/Desktop/대학/2024 - 1학기/확률및통계 01/중학생_남자_키.txt')
+
+print('길이: ',h.size)
+print('평균: ',h.mean())
+print('분산: ', h.var())
+print('표준편차: ',h.std())
+
+
+
+# %%
+
+#25
+a = (90-53.73)/29.85
+b = (90-59.53)/22.97
+
+print(a)
+print(b)
+
+
+
+
+
+
+# %%
+
+a = (90-85)/5
+b = (77-85)/5
+print(a)
+print(b)
+
+a = (62-60)/2
+b = (75-60)/2
+print(a)
+print(b)
+
+
+
+# %%
+
+import numpy as np
+
+h = np.loadtxt('C:/Users/김보석/Desktop/대학/2024 - 1학기/확률및통계 01/중학생_남자_키.txt')
+
+print('길이: ',h.size)
+print('평균: ',h.mean())
+print('분산: ', h.var())
+print('표준편차: ',h.std())
+
+a = (168 - h.mean())/h.std()
+print('z-score: ', a)
+
+
+# %%
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
 
 
 # %%
@@ -611,46 +774,6 @@ loop(a, 0) # a값 넣는다
 
 
 # %%
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-# %%
-
-
 
 
 
