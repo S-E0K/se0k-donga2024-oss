@@ -749,7 +749,7 @@ print('표준편차: ',h.std())
 a = (168 - h.mean())/h.std()
 print('z-score: ', a)
 
-# 0324
+# 0324 asdf
 # %%
 
 
