@@ -756,12 +756,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", sep='\t') # 텍스트 파일만 sep 필요
+
 plt.hist(data, label='bins=10', bins=10) # 막대수10
 plt.legend() # 범례
 plt.show()
+
 plt.hist(data, label='bins=5', bins=5)
 plt.legend()
 plt.show()
+
 plt.hist(data, label='bins=100', bins=100)
 plt.legend()
 plt.show()
@@ -774,6 +777,98 @@ plt.show()
 
 # %%
 
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
+
+plt.hist(data, label='bins=10', bins=10, color='RED') # 막대수10
+plt.legend() # 라벨 포함해서 보여줘
+plt.show()
+
+plt.hist(data, label='bins=5', bins=5)
+#plt.legend()
+plt.show()
+
+
+# %%
+
+from matplotlib import pyplot as plt
+#import matplotlib.pyplot as plt와 같은 의미
+x = [6, 7, 8, 9, 10, 11]
+y = [16109, 41401, 53121, 59899, 53450, 82565]
+# x,y축 데이터 (리스트, 배열 모두 가능)
+plt.bar(x, y)
+plt.title('number of cases by month')
+plt.show()
+
+
+x = ['a', 'b', 'c', 'd', 'e', 'f'] # 문자 가능
+y = [16109, 41401, 53121, 59899, 53450, 82565]
+# x,y축 데이터 (리스트, 배열 모두 가능)
+plt.bar(x, y)
+plt.title('number of cases by month')
+plt.show()
+
+
+# %%
+
+import matplotlib.pyplot as plt
+ratio = [22, 24, 6, 38, 10] # 비율
+labels = ['pizza', 'hamburger', 'pasta', 'chicken', 'bibimbab']
+plt.pie(ratio, labels=labels, autopct='%.1f%%') # 소숫점 이하 첫째 자릿수 퍼센트로 구현
+plt.show() # 따옴표는 복붙할 시 서식 달라질 수 있음
+
+
+# %%
+
+x = [2014, 2015, 2016, 2017, 2018, 2019, 2020] # x축
+y1 = [14.4, 14.5, 15.4, 16.9, 17.8, 17.6, 27.6] # 선 1
+y2 =[20.5, 21.0, 22.8, 23.6, 24.2, 24.3, 29.5] # 선 2
+plt.plot(x, y1, linestyle='solid', label='teens')
+# x와 y1 그래프 작성 (직선)
+plt.plot(x, y2, linestyle='dashed',label='20s')
+# x와 y2 그래프 작성 (점선)
+plt.legend(loc='best', ncol=2) 
+# ncol은 범례표시 컬럼 수
+plt.title('Internet Usage Time per Week')
+plt.show()
+
+
+# %%
+
+import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_excel("C:/파이썬자료/초등학생_키몸무게/초등학생_키몸무게.xlsx")
+plt.scatter(data.height, data.weight)
+plt.xlabel('height')
+plt.ylabel('weight')
+plt.show()
+
+plt.scatter(data.weight, data.height)
+plt.xlabel('weight')
+plt.ylabel('height')
+plt.show()
+
+
+# %%
+
+
+
+
+
+ 
+
+
+
+
+
+# %%
+
+
+
+
+
 
 
 
@@ -787,7 +882,163 @@ plt.show()
 
 
 
+
+
+
+
+
 # %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
 
 
 
