@@ -762,7 +762,9 @@ plt.show()
 plt.hist(data, label='bins=5', bins=5)
 plt.legend()
 plt.show()
-
+plt.hist(data, label='bins=100', bins=100)
+plt.legend()
+plt.show()
 
 
 
