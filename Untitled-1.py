@@ -853,6 +853,13 @@ plt.show()
 
 # %%
 
+import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_excel("C:/파이썬자료/초등학생_키몸무게/초등학생_키몸무게.xlsx")
+
+plt.hist(data, label='bins=6', bins=6) # 막대수10
+plt.legend() # 범례
+plt.show()
 
 
 
