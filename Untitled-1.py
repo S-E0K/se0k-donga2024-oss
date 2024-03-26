@@ -752,6 +752,19 @@ print('z-score: ', a)
 # 0324
 # %%
 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", sep='\t') # 텍스트 파일만 sep 필요
+plt.hist(data, label='bins=10', bins=10) # 막대수10
+plt.legend() # 범례
+plt.show()
+plt.hist(data, label='bins=5', bins=5)
+plt.legend()
+plt.show()
+
+
+
 
 
 
