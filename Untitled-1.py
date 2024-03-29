@@ -962,43 +962,92 @@ plt.show()
 # %%
 
 
+import numpy as np
+import pandas as pd
+from scipy import stats
 
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+x = pd.read_excel("C:/파이썬자료/중학생_남자_몸무게/중학생_남자_몸무게.xlsx", header = None)
+print('mean평균 =', np.mean(x), '\n')
+print('aver평균 =', np.average(x), '\n') # 가중치를 줄 수 있다
+print('중앙값 =', np.median(x),'\n')
+print('최빈값 =', stats.mode(x))
 
 
 # %%
 
 
-
-
-
-
-
-
-
+#확인문제 8
+import numpy as np
+a = np.array([[1, 2],
+              [3, 4]] )
+print('mean평균',np.mean(a))
+print('axis=0일 때 평균',np.mean(a, axis=0))
+#
+#1 2
+#3 4
+#
+#2 3 <- 이거 출력
+#
+print('axis=1일 때 평균',np.mean(a, axis=1))
+#
+#1 2   1.5
+#3 4   3.5
+#      위에거 출력
+#
+w = np.array([[0.1, 0.2],
+              [0.3, 0.4]])
+print('average', np.average(a))
+print('가중평균',np.average(a, weights=w))
+a = np.reshape(a, -1)
+w = np.reshape(w, -1)
+print('1차원 배열', a)
+print('가중평균',np.average(a, weights=w))
 
 
 # %%
 
 
+import numpy as np
 
+a = np.array([10,2,3,3,7,7,7,7,1,4])
+print(np.median(a))
+b = np.array([2,3,3,7,7,7,7,1,4])
+print(np.median(b))
+
+c = a.sort()
+
+if (a.size % 2 == 0):
+    print()
+else:
+    print()
+
+    
+
+
+
+
+
+#1. 1 2 3 3 4 7 7 7 7 10 -> 중앙값: 5.5
+#2. 1 2 3 3 4 7 7 7 7 -> 중앙값: 4
+#1. a.sort
+#2. np.sort(a)
+
+
+# %%
+
+
+import numpy as np
+
+a = np.array([10,2,3,3,7,7,7,7,1,4])
+
+b = a.sort()
+
+if (a.size % 2 != 0):
+    print()
+else:
+    print()
+
+    
 
 
 
