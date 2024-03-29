@@ -871,10 +871,26 @@ plt.legend() # 범례
 plt.show()
 
 
+# %%
+
+import pandas as pd
+import numpy as np
 
 
- 
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt") # 맨 위가 컬럼명으로 인식
+y = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
+print(x.size)
+print(y.size)
 
+print()
+print()
+
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None) # 헤더 없으니 컬럼명 없이 맨 위부터 인식
+print(x.size)
+print(x.columns[0]) # 컬럼명 출력
+x.columns=['height'] # 컬럼명 지정
+print(x.size)
+print(x.height[0])
 
 
 
@@ -882,76 +898,65 @@ plt.show()
 # %%
 
 
-a = 5
-b = a
-b = 7
-print(a)
-
-
-
-
-
-
+#틀린거 찾기 2.5
+import pandas as pd
+import matplotlib as plt #1. matplotlib.pyplot
+data = pd.read_csv("C:/ ... /중학생_남자_키.txt")
+plt.bar(data, label='bins=10', bins=10) #2. plt.hist
+plt.legend()
+#2.5 plt.show()
 
 
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+#틀린거 찾기 2
+from matplotlib import pyplot #1. as plt
+x = [6, 7, 8, 9, 10, 11]
+y = [16109, 41401, 53121, 59899, 53450] #2. 숫자 하나 더 있어야 함
+plt.bar(x, y, color='green')
+plt.title('number of cases by month')
+plt.show()
 
 
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+#틀린거 찾기 3
+import matplotlib.pyplot as plt
+ratio = [22.3, 24, 15.7, 38]
+labels = [pizza, hamburger, pasta, chicken] #1. '' 씌워야 함
+plt.circle(ratio, labels=labels, autopct='%.1%%') #2. plt.pie 3. %.1f%%
+plt.show()
 
 
 # %%
 
 
+#틀린거 찾기 3
+from matplotlib import pyplot as plt
+x = [2014, 2015, 2016, 2017, 2018, 2019, 2020]
+y1 = [14.4, 14.5, 15.4, 16.9, 17.8, 17.6, 27.6]
+y2 =[20.5, 21.0, 22.8, 23.6, 24.2, 24.3, 29.5]
+plt.line(x, y1, linestyle='dashed', label='teens') # linestyle='solid’
+# plt.plot
+plt.line(x, y2, linestyle='solid', label='20s') # linestyle='dashed'
+plt.legend(loc='best', ncol=2)
+#plt.title()
+plt.show()
 
 
+# %%
 
 
-
-
-
+#3
+#import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_csv("C:/ ... /초등학생_키몸무게.xlsx") # .txt or read_excel
+plt.scatter(data.weight, data.height) # 데이터 순서 반대로
+plt.xlabel('height')
+plt.ylabel('weight')
+plt.show()
 
 
 # %%
