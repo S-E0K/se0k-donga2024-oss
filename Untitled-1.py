@@ -1039,15 +1039,20 @@ else:
 import numpy as np
 
 a = np.array([10,2,3,3,7,7,7,7,1,4])
+# a = np.array([2,3,3,7,7,7,7,1,4])
 
-b = a.sort()
-
-if (a.size % 2 != 0):
-    print()
-else:
-    print()
-
+b = np.sort(a)
+c = b.size
+print(c)
+if (b.size % 2 != 0):
     
+    result = b[c//2]
+
+
+else:
+    result = (b[c/2 - 1] + b[c/2]) / 2
+
+print(result)
 
 
 
