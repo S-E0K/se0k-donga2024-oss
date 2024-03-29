@@ -1047,9 +1047,9 @@ if (b.size % 2 != 0):
 
 else:
     result = (b[c//2 - 1] + b[c//2]) / 2
-
+print(b)
 print(result)
-
+#############################
 a = np.array([2,3,3,7,7,7,7,1,4])
 b = np.sort(a)
 c = b.size
@@ -1059,7 +1059,7 @@ if (b.size % 2 != 0):
 
 else:
     result = (b[c//2 - 1] + b[c//2]) / 2
-
+print(b)
 print(result)
 
 
