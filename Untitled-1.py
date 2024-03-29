@@ -877,7 +877,7 @@ import pandas as pd
 import numpy as np
 
 
-x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt") # 맨 위가 컬럼명으로 인식
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt") # 맨 위가 컬럼명으로 인식 : 컬럼명 141
 y = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
 print(x.size)
 print(y.size)
@@ -885,7 +885,7 @@ print(y.size)
 print()
 print()
 
-x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None) # 헤더 없으니 컬럼명 없이 맨 위부터 인식
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None) # 헤더 없으니 컬럼명 없이 맨 위부터 인식 데이터 141.0
 print(x.size)
 print(x.columns[0]) # 컬럼명 출력
 x.columns=['height'] # 컬럼명 지정
