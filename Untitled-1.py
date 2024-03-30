@@ -859,6 +859,8 @@ import math
 
 data = pd.read_excel("C:/파이썬자료/초등학생_키몸무게/초등학생_키몸무게.xlsx")
 
+plt.hist(data, label='bins=6', bins=6)
+plt.legend()
 num = data['weight'].count() # 데이터 수
 
 print(num)
@@ -867,6 +869,7 @@ print(1 + math.log2(num))  # 스터지스 공식에 의하면 7이 나온다
 plt.hist(data['weight'], label='bins=7', bins=7)
 plt.legend() # 범례
 plt.show()
+
 
 
 # %%
@@ -899,6 +902,8 @@ class LinkedList:
 
 # %%
 
+import pandas as pd
+import numpy as np
 class Node:
     def __init__(self, item, next=None, prev=None):
         self.item = item
@@ -909,6 +914,10 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt") # 맨 위가 컬럼명으로 인식 : 컬럼명 141
+y = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
+print(x.size)
+print(y.size)
     def insert(self, i: int, x: int):
         """insert x in ith element"""
         new_node = Node(x)
@@ -926,6 +935,8 @@ class LinkedList:
         new_node.next = current.next
         current.next = new_node
 
+print()
+print()
     def delete(self, i):
         """delete ith element"""
         if i == 0:
@@ -942,6 +953,12 @@ class LinkedList:
             raise IndexError("Index out of range")
         current.next = current.next.next
 
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None) # 헤더 없으니 컬럼명 없이 맨 위부터 인식 데이터 141.0
+print(x.size)
+print(x.columns[0]) # 컬럼명 출력
+x.columns=['height'] # 컬럼명 지정
+print(x.size)
+print(x.height[0])
     def printList(self):
         """Prints the linked list"""
         current = self.head
@@ -949,6 +966,7 @@ class LinkedList:
             print(current.item, end=" -> ")
             current = current.next
         print("end")
+
 
 # 테스트
 if __name__ == "__main__":
@@ -967,6 +985,13 @@ if __name__ == "__main__":
 # %%
 
 
+#틀린거 찾기 2.5
+import pandas as pd
+import matplotlib as plt #1. matplotlib.pyplot
+data = pd.read_csv("C:/ ... /중학생_남자_키.txt")
+plt.bar(data, label='bins=10', bins=10) #2. plt.hist
+plt.legend()
+#2.5 plt.show()
 class SingleLinkedList(LinkedList):
     def __init__(self):
         super().__init__()
@@ -983,6 +1008,16 @@ class SingleLinkedList(LinkedList):
         newNode.next = current.next
         current.next = newNode
 
+# %%
+
+
+#틀린거 찾기 2
+from matplotlib import pyplot #1. as plt
+x = [6, 7, 8, 9, 10, 11]
+y = [16109, 41401, 53121, 59899, 53450] #2. 숫자 하나 더 있어야 함
+plt.bar(x, y, color='green')
+plt.title('number of cases by month')
+plt.show()
     def reverse(self):
         """여기에 코딩"""
         prev = self.__head
@@ -1003,87 +1038,139 @@ class SingleLinkedList(LinkedList):
 
 
 
-# %%
-
-
-
-
-
-
-
-
-
 
 
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+#틀린거 찾기 3
+from matplotlib import pyplot as plt
+x = [2014, 2015, 2016, 2017, 2018, 2019, 2020]
+y1 = [14.4, 14.5, 15.4, 16.9, 17.8, 17.6, 27.6]
+y2 =[20.5, 21.0, 22.8, 23.6, 24.2, 24.3, 29.5]
+plt.line(x, y1, linestyle='dashed', label='teens') # linestyle='solid’
+# plt.plot
+plt.line(x, y2, linestyle='solid', label='20s') # linestyle='dashed'
+plt.legend(loc='best', ncol=2)
+#plt.title()
+plt.show()
 
 
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+#3
+#import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_csv("C:/ ... /초등학생_키몸무게.xlsx") # .txt or read_excel
+plt.scatter(data.weight, data.height) # 데이터 순서 반대로
+plt.xlabel('height')
+plt.ylabel('weight')
+plt.show()
 
 
 # %%
 
 
+import numpy as np
+import pandas as pd
+from scipy import stats
 
-
-
-
-
-
-
+x = pd.read_excel("C:/파이썬자료/중학생_남자_몸무게/중학생_남자_몸무게.xlsx", header = None)
+print('mean평균 =', np.mean(x), '\n')
+print('aver평균 =', np.average(x), '\n') # 가중치를 줄 수 있다
+print('중앙값 =', np.median(x),'\n')
+print('최빈값 =', stats.mode(x))
 
 
 # %%
 
 
+#확인문제 8
+import numpy as np
+a = np.array([[1, 2],
+              [3, 4]] )
+print('mean평균',np.mean(a))
+print('axis=0일 때 평균',np.mean(a, axis=0))
+#
+#1 2
+#3 4
+#
+#2 3 <- 이거 출력
+#
+print('axis=1일 때 평균',np.mean(a, axis=1))
+#
+#1 2   1.5
+#3 4   3.5
+#      위에거 출력
+#
+w = np.array([[0.1, 0.2],
+              [0.3, 0.4]])
+print('average', np.average(a))
+print('가중평균',np.average(a, weights=w))
+a = np.reshape(a, -1)
+w = np.reshape(w, -1)
+print('1차원 배열', a)
+print('가중평균',np.average(a, weights=w))
+
+
+# %%
+
+
+import numpy as np
+
+a = np.array([10,2,3,3,7,7,7,7,1,4])
+print(np.median(a))
+b = np.array([2,3,3,7,7,7,7,1,4])
+print(np.median(b))
+
+c = a.sort()
+
+if (a.size % 2 == 0):
+    print()
+else:
+    print()
+
+    
 
 
 
 
 
+#1. 1 2 3 3 4 7 7 7 7 10 -> 중앙값: 5.5
+#2. 1 2 3 3 4 7 7 7 7 -> 중앙값: 4
+#1. a.sort
+#2. np.sort(a)
 
+
+# %%
+
+
+import numpy as np
+
+a = np.array([10,2,3,3,7,7,7,7,1,4])
+b = np.sort(a)
+c = b.size
+
+if (b.size % 2 != 0):
+    result = b[c//2]
+
+else:
+    result = (b[c//2 - 1] + b[c//2]) / 2
+print(b)
+print(result)
+#############################
+a = np.array([2,3,3,7,7,7,7,1,4])
+b = np.sort(a)
+c = b.size
+
+if (b.size % 2 != 0):
+    result = b[c//2]
+
+else:
+    result = (b[c//2 - 1] + b[c//2]) / 2
+print(b)
+print(result)
 
 
 
