@@ -871,36 +871,8 @@ plt.legend() # 범례
 plt.show()
 
 
-
 # %%
 
-
-class Node:
-  def __init__(self, item, next=None, prev=None):
-    self.item = item
-    self.next = None
-    self.prev = None
-
-class LinkedList:
-  def __init__(self):
-    self.head = None
-
-  def insert(self, i:int, x:int):
-    """insert x in ith element"""
-
-  def delete(self, i):
-    """delete ith element"""
-
-  def printList(self):
-    """여기에 코딩"""
-    current = self.head
-    while (current != None):
-        print(current.item, end=" -> ")
-        current = current.next
-    print("end")
-    
-
-# %%
 
 import pandas as pd
 import numpy as np
@@ -1171,6 +1143,172 @@ else:
     result = (b[c//2 - 1] + b[c//2]) / 2
 print(b)
 print(result)
+
+
+
+# %%
+
+
+class Node:
+  def __init__(self, item, next=None, prev=None):
+    self.item = item
+    self.next = None
+    self.prev = None
+
+class LinkedList:
+  def __init__(self):
+    self.head = None
+
+  def insert(self, i:int, x:int):
+    """insert x in ith element"""
+
+  def delete(self, i):
+    """delete ith element"""
+
+  def printList(self):
+    """여기에 코딩"""
+    current = self.head
+    while (current != None):
+        print(current.item, end=" -> ")
+        current = current.next
+    print("end")
+    
+
+# %%
+
+class Node:
+  def __init__(self, item, next=None, prev=None):
+    self.item = item
+    self.next = None
+    self.prev = None
+
+class LinkedList:
+  def __init__(self):
+    self.head = None
+
+  def insert(self, i:int, x:int):
+    """insert x in ith element"""
+
+  def delete(self, i):
+    """delete ith element"""
+
+  def printList(self):
+    """여기에 코딩"""
+    current = self.head
+    while (current != None):
+        print(current.item, end=" -> ")
+        current = current.next
+    print("end")
+    
+
+# %%
+
+class Node:
+    def __init__(self, item, next=None, prev=None):
+        self.item = item
+        self.next = next
+        self.prev = prev
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, i: int, x: int):
+        """insert x in ith element"""
+        new_node = Node(x)
+        if i == 0:
+            new_node.next = self.head
+            self.head = new_node
+            return
+        current = self.head
+        for _ in range(i - 1):
+            if current is None:
+                raise IndexError("Index out of range")
+            current = current.next
+        if current is None:
+            raise IndexError("Index out of range")
+        new_node.next = current.next
+        current.next = new_node
+
+    def delete(self, i):
+        """delete ith element"""
+        if i == 0:
+            if self.head is None:
+                raise IndexError("List is empty")
+            self.head = self.head.next
+            return
+        current = self.head
+        for _ in range(i - 1):
+            if current is None:
+                raise IndexError("Index out of range")
+            current = current.next
+        if current is None or current.next is None:
+            raise IndexError("Index out of range")
+        current.next = current.next.next
+
+    def printList(self):
+        """Prints the linked list"""
+        current = self.head
+        while current != None:
+            print(current.item, end=" -> ")
+            current = current.next
+        print("end")
+
+# 테스트
+if __name__ == "__main__":
+    # 링크드 리스트 생성
+    linked_list = LinkedList()
+    # 노드 추가
+    linked_list.insert(0, 1)
+    linked_list.insert(1, 2)
+    linked_list.insert(2, 3)
+    linked_list.insert(3, 4)
+    # 링크드 리스트 출력
+    linked_list.printList()
+
+
+
+# %%
+
+
+class SingleLinkedList(LinkedList):
+    def __init__(self):
+        super().__init__()
+        self.head = Node(None)
+        self.dummy = Node(None, self.head)
+        self.head.next = self.dummy
+
+    def insert(self, i:int, x:int):
+        newNode = Node(x)
+        current = self.head
+        while i != -1:
+            current = current.next
+            i -= 1
+        newNode.next = current.next
+        current.next = newNode
+
+    def reverse(self):
+        """여기에 코딩"""
+        prev = self.__head
+        curr = prev.next
+        next = curr.next
+        
+        for i in range(self.__numItems):
+            curr.next = prev
+            prev = curr
+            curr = next
+            next = next.next
+
+
+
+
+
+
+
+
+
+
+
 
 
 
