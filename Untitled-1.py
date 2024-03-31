@@ -1289,29 +1289,18 @@ class SingleLinkedList(LinkedList):
 
     def reverse(self):
         """여기에 코딩"""
-        prev = self.__head
-        curr = prev.next
-        next = curr.next
+        prev = self.head # 헤드를 이전 노드로 지정
+        curr = prev.next # 헤드의 다음 노드를 현재 노드로 지정
+        next = curr.next # 그 다음 노드를 다음 노드로 지정
         
-        for i in range(self.__numItems):
-            curr.next = prev
-            prev = curr
-            curr = next
-            next = next.next
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        while(curr != self.dummy): # 현재 노드가 더미가 아닐 때 반복
+            curr.next = prev # 현재 노드의 다음 노드를 이전 노드로 변경
+            prev = curr # 이전 노드를 현재 노드로 변경
+            curr = next # 현재 노드를 다음 노드로 변경
+            next = next.next # 다음 노드를 다다음 노드로 변경 -> 한칸씩 다음 노드로 이동함
+        self.head.next = prev # 현재 노드가 더미 노드일 때(헤드 일 때) 다음 노드를 이전 노드로 변경
+        
+            
 # %%
 
 
