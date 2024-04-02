@@ -1370,58 +1370,60 @@ data = pd.DataFrame(pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
 plt.hist(data.냉면, label='bins=5', bins=5)
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.냉면))
+print("왜도 : ", stats.skew(data.냉면)) # 0.161 4
 print()
 print()
 
 plt.hist(data.비빔밥, label='bins=5', bins=5, color='green')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.비빔밥))
+print("왜도 : ", stats.skew(data.비빔밥)) # 0.612 2
 print()
 print()
 
 plt.hist(data.김치찌개, label='bins=5', bins=5, color='orange')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.김치찌개))
+print("왜도 : ", stats.skew(data.김치찌개)) # 1.002 1
 print()
 print()
 
 plt.hist(data.삼겹살, label='bins=5', bins=5, color='red')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.삼겹살))
+print("왜도 : ", stats.skew(data.삼겹살)) # 0.039 5
 print()
 print()
 
 plt.hist(data.자장면, label='bins=5', bins=5, color='yellow')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.자장면))
+print("왜도 : ", stats.skew(data.자장면)) # 0.167 3
 print()
 print()
 
 plt.hist(data.삼계탕, label='bins=5', bins=5, color='purple')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.삼계탕))
+print("왜도 : ", stats.skew(data.삼계탕)) # -0.723 8    
 print()
 print()
 
 plt.hist(data.칼국수, label='bins=5', bins=5, color='black')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.칼국수))
+print("왜도 : ", stats.skew(data.칼국수)) # -0.048 6
 print()
 print()
 
 plt.hist(data.김밥, label='bins=5', bins=5, color='pink')
 plt.legend() # 범례
 plt.show()
-print("왜도 : ", stats.skew(data.김밥))
+print("왜도 : ", stats.skew(data.김밥)) # -0.128 7
+print()  
 print()
-print()
+
+
 
 
 # %%
