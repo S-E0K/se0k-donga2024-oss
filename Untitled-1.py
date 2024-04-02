@@ -1409,14 +1409,14 @@ print("왜도 : ", stats.skew(data.삼계탕)) # -0.723 8
 print()
 print()
 
-plt.hist(data.칼국수, label='bins=5', bins=5, color='black')
+plt.hist(data.칼국수, label='bins=5', bins=5, color='coral')
 plt.legend() # 범례
 plt.show()
 print("왜도 : ", stats.skew(data.칼국수)) # -0.048 6
 print()
 print()
 
-plt.hist(data.김밥, label='bins=5', bins=5, color='pink')
+plt.hist(data.김밥, label='bins=5', bins=5, color='crimson')
 plt.legend() # 범례
 plt.show()
 print("왜도 : ", stats.skew(data.김밥)) # -0.128 7
