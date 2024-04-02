@@ -1304,43 +1304,100 @@ class SingleLinkedList(LinkedList):
 # %%
 
 
+import numpy as np
+import pandas as pd
+from scipy import stats
 
 
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+a = np.array([1,2,3,3,4,4,6,7,7,10])
+print('a의 mean =',a.mean())
+print('a의 10% 절사평균 =', stats.trim_mean(a, 0.1)) # 0.1은 양쪽에서 10퍼씩 제외한다 총 20퍼
+print('\n')
+x = pd.read_excel("C:/파이썬자료/중학생_남자_몸무게/중학생_남자_몸무게.xlsx", header=None) # 헤더 넣어서 0 출력
+print('x의 mean =',x.mean()) # header 없어서 47.5가 헤더로 출력
+print('x의 10% 절사평균 =', stats.trim_mean(x, 0.1))
 
 
 # %%
 
 
+import pandas as pd
+from scipy import stats
+
+data = pd.DataFrame(pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx"))
+#print("왜도 : ", stats.skew(data)) # 0은 첫번째인 지역이다 의미x
+#print("첨도 : ", stats.kurtosis(data))
+#print("\n\n\n")
+print(data.describe())
+print()
+print(stats.describe(data)) # 참고로 알고있어라
 
 
+# %%
+
+# 확인문제 17
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+
+data = pd.DataFrame(pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx"))
+plt.hist(data.냉면, label='bins=5', bins=5)
+plt.legend() # 범례
+plt.show()
 
 
+plt.hist(data.삼계탕, label='bins=5', bins=5, color='green')
+plt.legend() # 범례
+plt.show()
 
+plt.hist(data.김밥, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
 
-
+print("왜도 : ", stats.skew(data.냉면))
+print("왜도 : ", stats.skew(data.삼계탕))
+print("왜도 : ", stats.skew(data.김밥))
 
 
 # %%
 
 
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
 
+data = pd.DataFrame(pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx"))
+plt.hist(data.냉면, label='bins=5', bins=5)
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.비빔밥, label='bins=5', bins=5, color='green')
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.김치찌개, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.삼겹살, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.자장면, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.삼계탕, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.칼국수, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
+
+plt.hist(data.김밥, label='bins=5', bins=5, color='orange')
+plt.legend() # 범례
+plt.show()
 
 
 
