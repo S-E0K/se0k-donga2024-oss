@@ -1462,38 +1462,41 @@ plt.show() #
 # %%
 
 
+#19번 문제 과제
 import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
 
-new_data = [data['냉면'], data['비빔밥']]
-result = pd.concat(new_data, axis=0, keys=['냉면', '비빔밥'])
-print(result)
+new_data = [data['냉면'], data['비빔밥']] # 외식비 파일의 냉면과 비빔밥만 읽어오기
+result = pd.concat(new_data, axis=0, keys=['냉면', '비빔밥']) # 냉면과 비빔밥 합침
+print(result) # 확인용 출력
 
-
-plt.hist(result, label='bins=6', bins=6)
+plt.hist(result, label='bins=6', bins=6) # 스터지수공식에 의한 막대 갯수 6개로 히스터그램 만들기
 plt.legend() # 범례
+plt.savefig("C:/파이썬자료/psdata/19번 과제 냉면비빔.png") # png파일로 저장
 plt.show()
-
-
-
-
-
-
-
 
 
 # %%
 
 
+# 20번 과제
+import pandas as pd
+import matplotlib.pyplot as plt
 
+weight = pd.read_excel("C:/파이썬자료/중학생_남자_몸무게/중학생_남자_몸무게.xlsx", header=None) # 헤더 없음
+height = pd.read_excel("C:/파이썬자료/중학생_남자_키/중학생_남자_키.xlsx", header = None) # 헤더 없음
 
+new_data = [weight, height] # 두 데이터를 합침
+result = pd.concat(new_data, axis = 1, keys=['몸무게', '키']) # 2열로 합침
+print(result) # 확인용 프린트
 
-
-
-
-
+plt.scatter(result['몸무게'], result['키']) # 산점도로 바꿈
+plt.xlabel('weight') # x축은 몸무게
+plt.ylabel('height') # y축은 키
+plt.savefig("C:/파이썬자료/psdata/20번 과제 산점도.png") # png파일로 산점도 그림 저장
+plt.show() # 보여주기
 
 
 # %%
