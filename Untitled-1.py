@@ -1446,7 +1446,7 @@ print(type(new_data)) # 리스트 타입 출력
 
 
 #         합치기                      컬럼명                     
-result = pd.concat(new_data, axis=1, keys=['name', 'total']) # axis = 0: 위 아래, 1: 왼쪽 오른쪽
+result = pd.concat(new_data, axis=0, keys=['name', 'total']) # axis = 0: 위 아래, 1: 왼쪽 오른쪽
 print(type(result)) # 데이터 프레임
 print(result) #  
 result.to_excel("C:/파이썬자료/psdata/result1.xlsx") # 파일 만들기
@@ -1459,15 +1459,22 @@ plt.savefig("C:/파이썬자료/psdata/histogram of score.png") # 그림 저장
 plt.show() # 
 
 
-
-
-
-
-
-
 # %%
 
 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
+
+new_data = [data['냉면'], data['비빔밥']]
+result = pd.concat(new_data, axis=0, keys=['냉면', '비빔밥'])
+print(result)
+
+
+plt.hist(result, label='bins=6', bins=6)
+plt.legend() # 범례
+plt.show()
 
 
 
