@@ -1424,12 +1424,39 @@ print()
 print()
 
 
-
-
 # %%
 
 
+import pandas as pd
+import matplotlib.pyplot as plt
 
+file_data = pd.read_csv("C:/파이썬자료/sample/sample1.csv") # 데이터 프레임
+print(file_data[0:5]) # 맨 위 다섯 행만 보겠다 - 일부 출력
+              
+
+#                시리즈                  시리즈
+total_score = file_data['점수'] * 5 + file_data['출석'] # 시리즈
+print(type(total_score)) # 시리즈 타입 출력
+
+
+
+#           시리즈
+new_data = [file_data['이름'], total_score] # 리스트에 넣음
+print(type(new_data)) # 리스트 타입 출력
+
+
+#         합치기                      컬럼명                     
+result = pd.concat(new_data, axis=1, keys=['name', 'total']) # axis = 0: 위 아래, 1: 왼쪽 오른쪽
+print(type(result)) # 데이터 프레임
+print(result) #  
+result.to_excel("C:/파이썬자료/psdata/result1.xlsx") # 파일 만들기
+#     파일 만들기
+
+
+plt.hist(total_score, label='score data', bins=7) # 
+plt.legend() # 
+plt.savefig("C:/파이썬자료/psdata/histogram of score.png") # 그림 저장
+plt.show() # 
 
 
 
