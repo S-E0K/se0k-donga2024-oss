@@ -1502,13 +1502,13 @@ plt.show() # 보여주기
 # %%
 
 
-
-
-
-
-
-
-
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.array([0, 1, 2, 3, 4]) # 확률 변수 x의 값
+count = np.array([5, 25, 40, 25, 5]) # 빈도
+prob = count/100
+plt.bar(x,prob)
+plt.show()
 
 
 # %%
