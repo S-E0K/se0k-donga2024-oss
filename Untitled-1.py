@@ -1526,31 +1526,44 @@ plt.show()
 # %%
 
 
+# 동전 두번 던지기
+import numpy as np
+import matplotlib.pyplot as plt
 
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+arr = np.array = [0, 1, 2] # 앞면이 나오는 확률변수 값 (확률변수 X)
+parr = np.array[0.25, 0.5, 0.25] # 확률 (확률 P(X))
+plt.bar(arr, parr)
+plt.xlabel('X')
+plt.ylabel('P(X)')
+plt.show()
 
 
 # %%
 
 
+#동전 세개 던지기
+import numpy as np
+import matplotlib.pyplot as plt
 
+arr = np.array([0, 1, 2, 3]) # 앞면이 나오는 확률변수 값 (확률변수 X)
+parr = np.array([1, 3, 3, 1]) # 빈도수
+prob = parr / 8
+plt.bar(arr, prob)
+plt.xlabel('X')
+plt.ylabel('P(X)')
+plt.show()
+
+
+# %%
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.array([1, 2, 3, 4, 5]) # 확률 변수 x의 값
+count = np.array([8, 12, 15, 30, 85]) # 빈도
+prob = count / 150 # np.array는 숫자로 나누면 모든 항목이 나눠진다
+plt.bar(x,prob)
+plt.show()
 
 
 
