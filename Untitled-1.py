@@ -1506,7 +1506,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 x = np.array([0, 1, 2, 3, 4]) # 확률 변수 x의 값
 count = np.array([5, 25, 40, 25, 5]) # 빈도
-prob = count/100
+prob = count/100 # np.array는 숫자로 나누면 모든 항목이 나눠진다
 plt.bar(x,prob)
 plt.show()
 
@@ -1514,13 +1514,13 @@ plt.show()
 # %%
 
 
-
-
-
-
-
-
-
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.array([1, 2, 3, 4, 5]) # 확률 변수 x의 값
+count = np.array([8, 12, 15, 30, 85]) # 빈도
+prob = count/150 # np.array는 숫자로 나누면 모든 항목이 나눠진다
+plt.bar(x,prob)
+plt.show()
 
 
 # %%
