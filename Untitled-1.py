@@ -1566,22 +1566,39 @@ plt.bar(x,prob)
 plt.show()
 
 
+# %%
 
 
+import numpy as np
 
 
+def stusis(num):
+    return np.ceil(1 + np.log2(num))
+    
+def csvSample():
+    return "file_df = pd.read_csv(\"C:/'''/sample3.txt\", sep='\t', encoding=\"UTF-8\")"
+
+def excelSample():
+    return "file_df = pd.read_excel(\"C:/'''/sample4.xlsx\")"
+
+print("스터지스: ", BoSeokDonga.stusis(36))
+print("csv 예시: ", BoSeokDonga.csvSample())
+print("엑셀 예시: ", BoSeokDonga.excelSample())
 
 
 # %%
 
 
+from BoSeokDonga import BoSeokDonga
+import pandas as pd
+
+print("스터지스: ", BoSeokDonga.stusis(32))
+print("csv 예시: ", BoSeokDonga.csvSample())
+print("엑셀 예시: ", BoSeokDonga.excelSample())
 
 
-
-
-
-
-
+file_data = pd.read_csv("C:/파이썬자료/sample/sample1.csv") # 데이터 프레임
+print(file_data[0:5]) # 맨 위 다섯 행만 보겠다 - 일부 출력
 
 
 # %%
