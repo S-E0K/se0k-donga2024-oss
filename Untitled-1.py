@@ -1603,14 +1603,22 @@ print(file_data[0:5]) # 맨 위 다섯 행만 보겠다 - 일부 출력
 
 # %%
 
-
-
-
-
-
-
-
-
+# 4장 확인문제 4.
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy.stats import binom
+n = 3 # 횟수
+p = 1 / 3 # 성공 확률
+x = np.arange(n+1)
+mean, var = binom.stats(n, p)
+prob = binom.pmf(x, n, p)
+print('mean=', mean, 'var=', var)
+plt.bar(x, prob)
+plt.xlabel('X')
+plt.ylabel('P(X)')
+plt.title('binomial distribution(n=3, p=1/3)')
+plt.show()
+print(prob)
 
 
 # %%
