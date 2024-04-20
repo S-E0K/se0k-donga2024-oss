@@ -1624,6 +1624,329 @@ print(prob)
 # %%
 
 
+a = [1, 2, 3, 4, 5]
+
+a.extend(['989'])
+print(a)
+
+
+
+         
+
+# %%
+    
+class ListNode:
+    def __init__(self, newItem, nextNode = 'ListNode'):
+        self.item = newItem
+        self.next = nextNode
+
+# %%
+
+class LinkedListBasic:
+    def __init__(self):
+        self.__head = ListNode('dummy', None)
+        self.__numItems = 0
+
+    def insert(self, i, newItem):
+        if i >= 0 and i <= self.__numItems:
+            prev = self.__getNode(i - 1)
+            newNode = ListNode(newItem, prev.next)
+            prev.next = newNode
+            self.__numItems += 1
+        else:
+            print("에러 ")
+        
+    def append(self, newItem):
+        prev = self.__getNode(self.__numItems - 1)
+        newNode = ListNode(newItem, prev.next)
+        prev.next = newNode
+        self.__numItems += 1
+
+    def pop(self, i):
+        if i >= 0 and i <= self.__numItems - 1:
+            prev = self.__getNode(i - 1)
+            curr = prev.next
+            prev.next = curr.next
+            getitem = curr.item
+            self.__numItems -= 1
+            return getitem
+        else:
+            return None
+        
+    def remove(self, item):
+        (prev, curr) = self.__fineNode(item)
+        if curr != None:
+            prev.next = curr.next
+            self.__numItems -= 1
+            return item
+        else:
+            return None
+    
+    def get(self, i):
+        if self.isEmpty():
+            return None
+        if i >= 0 and i <= self.__numItems - 1:
+            return self.__getNode(i).item
+        else:
+            return None
+
+    def index(self, findItem):
+        curr = self.__head.next
+        for index in range(self.__numItems):
+            if curr.item == findItem:
+                return index
+            else:
+                curr = curr.next
+        return None
+                    
+    def isEmpty(self):
+        return self.__numItems == 0
+        
+    def size(self):
+        return self.__numItems
+
+    def clear(self):
+        self.__head = ListNode('dummy', None)
+        self.__numItems = 0
+
+    def count(self, x):
+        cnt = 0
+        curr = self.__head.next
+        for index in range(self.__numItems):
+            if curr.item == x :
+                cnt += 1
+            curr = curr.next
+        return cnt
+
+    def extend(self, a):
+        for index in range(a.size()):
+            self.append(a.get(index))
+
+    def copy(self):
+        a = LinkedListBasic()
+        for index in range(self.__numItems):
+            a.append(self.get(index))
+        return a
+        
+    def reverse(self):
+        a = LinkedListBasic()
+        for index in range(self.__numItems):
+            a.insert(0, self.get(index))
+        self.clear()
+        for index in range(a.size()):
+            self.append(a.get(index))
+
+    def sort(self):
+        a = []
+        for index in range(self.__numItems):
+            a.append(self.get(index))
+            a.sort()
+            self.clear()
+        for index in range(len(a)):
+            self.append(a[index])
+
+    def __findNode(self, x):
+        prev = self.__head
+        curr = prev.next
+        while curr != None:
+            if curr.item == x:
+                return (prev, curr)
+            else:
+                prev = curr
+                curr = curr.next
+        return (None, None)
+        
+    def __getNode(self, i):
+        curr = self.__head.next
+        for index in range(i + 1):
+            curr = curr.next
+        return curr
+            
+    def printList(self):
+        curr = self.__head.next
+        while curr != None:
+            print(curr.item, end = " ")
+            curr = curr.next
+        print()    
+        
+
+
+
+
+
+# %%
+
+list = LinkedListBasic()
+list.append(30)
+list.insert(0, 20)
+
+a = LinkedListBasic()
+a.append(4)
+a.append(3)
+a.append(3)
+a.append(2)
+a.append(1)
+
+list.extend(a)
+list.reverse()
+list.pop(0)
+
+print("count(3):", list.count(3))
+print("get(2):", list.get(2))
+list.printList()
+
+
+
+
+
+
+
+
+# %%
+
+class LinkedListBasic:
+	def __init__(self):
+		self.__head = ListNode('dummy', None)
+		self.__numItems = 0
+
+	# [알고리즘 5 - 2] 구현: 연결 리스트에 원소 삽입하기(더미 헤드를 두는 대표 버전)
+	def insert(self, i:int, newItem):
+		if i >= 0 and i <= self.__numItems:
+			prev = self.__getNode(i - 1)
+			newNode = ListNode(newItem, prev.next)
+			prev.next = newNode
+			self.__numItems += 1
+		else:
+			print("index", i, ": out of bound in insert()") # 필요 시 에러 처리
+
+	def append(self, newItem):
+		prev = self.__getNode(self.__numItems - 1)
+		newNode = ListNode(newItem, prev.next)
+		prev.next = newNode
+		self.__numItems += 1
+
+	# [알고리즘 5-3] 구현: 연결 리스트의 원소 삭제하기
+	def pop(self, i:int):   # i번 노드 삭제. 고정 파라미터
+		if (i >= 0 and i <= self.__numItems-1):
+			prev = self.__getNode(i - 1)
+			curr = prev.next
+			prev.next = curr.next
+			retItem = curr.item
+			self.__numItems -= 1
+			return retItem
+		else:
+			return None
+
+	# [알고리즘 5 -4] 구현: 연결 리스트의 원소 x 삭제하기 (더미 헤드를 두는 대표 버전)
+	def remove(self, x):
+		(prev, curr) = self.__findNode(x)
+		if curr != None:
+			prev.next = curr.next
+			self.__numItems -= 1
+			return x
+		else:
+			return None
+
+	# [알고리즘 5 - 5] 구현: 연결 리스트의 i번 원소 알려주기
+	def get(self, i:int):
+		if self.isEmpty():
+			return None
+		if (i >= 0 and i <= self.__numItems - 1):
+			return self.__getNode(i).item
+		else:
+			return None
+
+	# [알고리즘 5 -7] 구현: x가 연결 리스트의 몇 번 원소인지 알려주기
+	def index(self, x) -> int:
+		curr = self.__head.next	 # 0번 노드:  더미 헤드 다음 노드
+		for index in range(self.__numItems):
+			if curr.item == x:
+				return index
+			else:
+				curr = curr.next
+		return -2 # 안 쓰는 인덱스
+
+	# [알고리즘 5 -8] 구현: 기타 작업들
+	def isEmpty(self) -> bool:
+		return self.__numItems == 0
+
+	def size(self) -> int:
+		return self.__numItems
+
+	def clear(self):
+		self.__head = ListNode("dummy", None)
+		self.__numItems = 0
+
+	def count(self, x) -> int:
+		cnt = 0
+		curr = self.__head.next  # 0번 노드
+		while curr != None:
+			if curr.item == x:
+					cnt += 1
+			curr = curr.next
+		return cnt
+
+	def extend(self, a): # 여기서 a는 self와 같은 타입의 리스트
+		for index in range(a.size()):
+			self.append(a.get(index))
+
+	def copy(self):
+		a = LinkedListBasic()
+		for index in range(self.__numItems):
+			a.append(self.get(index))
+		return a
+
+	def reverse(self):
+		a = LinkedListBasic()
+		for index in range(self.__numItems):
+			a.insert(0, self.get(index))
+		self.clear()
+		for index in range(a.size()):
+			self.append(a.get(index))
+
+	def sort(self) -> None:
+		a = []
+		for index in range(self.__numItems):
+			a.append(self.get(index))
+		a.sort()
+		self.clear()
+		for index in range(len(a)):
+			self.append(a[index])
+
+	def __findNode(self, x) -> (ListNode, ListNode):
+		prev = self.__head  # 더미 헤드
+		curr = prev.next    # 0번 노드
+		while curr != None:
+			if curr.item == x:
+				return (prev, curr)
+			else:
+				prev = curr; curr = curr.next
+		return (None, None)
+
+	# [알고리즘 5-6] 구현: 연결 리스트의 i번 노드 알려주기
+	def __getNode(self, i:int) -> ListNode:
+		curr = self.__head # 더미 헤드, index: -1
+		for index in range(i+1):
+			curr = curr.next
+		return curr
+
+	def printList(self):
+		curr = self.__head.next # 0번 노드: 더미 헤드 다음 노드
+		while curr != None:
+			print(curr.item, end = ' ')
+			curr = curr.next
+		print()
+
+
+
+# %%
+
+
+class BidirectNode:
+    def __inif__(self, x, prevNode : 'BidirectNode', nextNode : 'BidirectNode'):
+        self.item = x
+        self.prev = prevNode
+        self.next = nextNode
 
 
 
@@ -1635,8 +1958,33 @@ print(prob)
 
 # %%
 
+count = 0
+count2 = 0
+def move(n):
+    global count, count2
+    count += 1
+    if ( n > 0 ):
+        move(n-1)
+        count2 += 1
+        move(n-1)
+
+move(4)
+print(count, count2)
 
 
+
+
+
+# %%
+
+
+a = 3
+b = 7
+print(a, b)
+
+a, b = b, a
+
+print(a, b)
 
 
 
@@ -1648,31 +1996,15 @@ print(prob)
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
+def printInterval(self, i, j) -> None:
+    index = 0
+    for element in self:
+        if :
+            print(element, end = ' ')
+        if (j == index):
+            
+        index += 1
+print()
 
 
 
@@ -1684,21 +2016,11 @@ print(prob)
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
+a = [5, 2, 6, 2 , 1, 3]
+a.pop(0)
+a.insert(0, 99)
+a.append(55)
+print(a)
 
 
 
@@ -1706,58 +2028,14 @@ print(prob)
 
 
 # %%
+from stack.listStack import *
+from queue.listQueue import *
+
+s = ListStack(); q = ListQueue()
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
+str = "abcd"
+print(str[1])
 
 
 
