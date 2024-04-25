@@ -2022,7 +2022,7 @@ a.insert(0, 99)
 a.append(55)
 print(a)
 
-
+print(len(a))
 
 
 
@@ -2033,14 +2033,8 @@ from queue.listQueue import *
 
 s = ListStack(); q = ListQueue()
 
-
 str = "abcd"
 print(str[1])
-
-
-
-
-
 
 
 # %%
