@@ -694,11 +694,12 @@ print('표준화 후 표준편차', fish_s.std())
 
 
 
+
 # %%
 
 import numpy as np
 
-h = np.loadtxt('C:/Users/김보석/Desktop/대학/2024 - 1학기/확률및통계 01/중학생_남자_키.txt')
+h = np.loadtxt('C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt')
 
 print('길이: ',h.size)
 print('평균: ',h.mean())
@@ -876,82 +877,18 @@ plt.show()
 
 import pandas as pd
 import numpy as np
-class Node:
-    def __init__(self, item, next=None, prev=None):
-        self.item = item
-        self.next = next
-        self.prev = prev
-
-class LinkedList:
-    def __init__(self):
-        self.head = None
 
 x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt") # 맨 위가 컬럼명으로 인식 : 컬럼명 141
 y = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
 print(x.size)
 print(y.size)
-    def insert(self, i: int, x: int):
-        """insert x in ith element"""
-        new_node = Node(x)
-        if i == 0:
-            new_node.next = self.head
-            self.head = new_node
-            return
-        current = self.head
-        for _ in range(i - 1):
-            if current is None:
-                raise IndexError("Index out of range")
-            current = current.next
-        if current is None:
-            raise IndexError("Index out of range")
-        new_node.next = current.next
-        current.next = new_node
 
-print()
-print()
-    def delete(self, i):
-        """delete ith element"""
-        if i == 0:
-            if self.head is None:
-                raise IndexError("List is empty")
-            self.head = self.head.next
-            return
-        current = self.head
-        for _ in range(i - 1):
-            if current is None:
-                raise IndexError("Index out of range")
-            current = current.next
-        if current is None or current.next is None:
-            raise IndexError("Index out of range")
-        current.next = current.next.next
-
-x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None) # 헤더 없으니 컬럼명 없이 맨 위부터 인식 데이터 141.0
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None) # 헤더 없으면 컬럼명 없이 맨 위부터 인식 데이터 141.0
 print(x.size)
 print(x.columns[0]) # 컬럼명 출력
 x.columns=['height'] # 컬럼명 지정
 print(x.size)
 print(x.height[0])
-    def printList(self):
-        """Prints the linked list"""
-        current = self.head
-        while current != None:
-            print(current.item, end=" -> ")
-            current = current.next
-        print("end")
-
-
-# 테스트
-if __name__ == "__main__":
-    # 링크드 리스트 생성
-    linked_list = LinkedList()
-    # 노드 추가
-    linked_list.insert(0, 1)
-    linked_list.insert(1, 2)
-    linked_list.insert(2, 3)
-    linked_list.insert(3, 4)
-    # 링크드 리스트 출력
-    linked_list.printList()
-
 
 
 # %%
@@ -963,22 +900,6 @@ import matplotlib as plt #1. matplotlib.pyplot
 data = pd.read_csv("C:/ ... /중학생_남자_키.txt")
 plt.bar(data, label='bins=10', bins=10) #2. plt.hist
 plt.legend()
-#2.5 plt.show()
-class SingleLinkedList(LinkedList):
-    def __init__(self):
-        super().__init__()
-        self.head = Node(None)
-        self.dummy = Node(None, self.head)
-        self.head.next = self.dummy
-
-    def insert(self, i:int, x:int):
-        newNode = Node(x)
-        current = self.head
-        while i != -1:
-            current = current.next
-            i -= 1
-        newNode.next = current.next
-        current.next = newNode
 
 # %%
 
@@ -990,26 +911,6 @@ y = [16109, 41401, 53121, 59899, 53450] #2. 숫자 하나 더 있어야 함
 plt.bar(x, y, color='green')
 plt.title('number of cases by month')
 plt.show()
-    def reverse(self):
-        """여기에 코딩"""
-        prev = self.__head
-        curr = prev.next
-        next = curr.next
-        
-        for i in range(self.__numItems):
-            curr.next = prev
-            prev = curr
-            curr = next
-            next = next.next
-        
-
-
-
-
-
-
-
-
 
 
 # %%
@@ -2039,6 +1940,365 @@ print(str[1])
 
 # %%
 
+import numpy as np
+a = np.array([[1,2,3,4,5],
+             [6,7,8,9,10]])
+print(a[1, 2:4])
+
+
+# %%
+
+import numpy as np
+import pandas as pd
+
+file = pd.read_csv("C:/파이썬자료/sample/sample2.txt",  sep='\t', encoding="UTF-8")
+
+print(file)
+
+
+
+
+
+
+
+
+
+
+# %%
+import numpy as np
+import pandas as pd
+
+
+df1 = pd.DataFrame({
+    'col1' : np.array([1,2,3]),
+    'col2' : np.array(['A','B','C'])
+})
+df2= pd.DataFrame({
+    'col1' : np.array([4,5,6]),
+    'col2' : np.array(['D','E','F'])
+})
+df3= pd.DataFrame({
+    'col1' : np.array([4,5,6]),
+    'col2' : np.array(['D','E','F'])
+})
+
+df = pd.DataFrame({
+'col1' : [1,2,3,4,5],
+'col2' : [2,4,6,8,10],
+'col3' : ['A','B','C','D','E'] })
+
+print(df.query('col1 >= 3')) 
+
+
+
+
+# %%
+
+import matplotlib.pyplot as plt
+ratio = [22, 24, 16, 50] # 비율
+labels = ['pizza', 'hamburger', 'pasta', 'chicken']
+plt.pie(ratio, labels=labels, autopct='%.1f%%')
+plt.show()
+
+
+# %%
+
+
+from matplotlib import pyplot as plt
+x = [2014, 2015, 2016, 2017, 2018, 2019, 2020] # x축
+y1 = [14.4, 14.5, 15.4, 16.9, 17.8, 17.6, 27.6] # 선 1
+y2 =[20.5, 21.0, 22.8, 23.6, 24.2, 24.3, 29.5] # 선 2
+plt.plot(x, y1, linestyle='solid', label='teens')
+# x와 y1 그래프 작성 (직선)
+plt.plot(x, y2, linestyle='dashed',label='20s')
+# x와 y2 그래프 작성 (점선)
+plt.legend(loc='best', ncol=2)
+# ncol은 범례표시 컬럼 수
+plt.title('Internet Usage Time per Week')
+plt.show()
+
+
+# %%
+
+
+import numpy as np
+import pandas as pd
+from scipy import stats
+x = pd.read_excel("C:/파이썬자료/중학생_남자_몸무게/중학생_남자_몸무게.xlsx")
+print('평균 =', np.mean(x), '\n')
+print('중앙값 =', np.median(x),'\n')
+print('최빈값 =', stats.mode(x))
+
+
+
+
+
+
+
+
+# %%
+
+
+import pandas as pd
+from scipy import stats
+data = pd.DataFrame(pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx"))
+print(data.describe())
+print()
+print(stats.describe(data))
+
+
+# %%
+
+import numpy as np
+import pandas as pd
+
+arr1 = np.array([1, 2, 3, 4 ,5])
+arr2 = np.array([6, 7, 8, 9, 10])
+
+
+print(arr1)
+print(arr1+arr2)
+print(arr1+5)
+print(arr1-arr2)
+print(arr1-5)
+print(arr1*arr2)
+print(arr1*2)
+print(arr1/arr2)
+print(arr1/5)
+
+
+# %%
+
+import numpy as np
+import pandas as pd
+
+list1 = (1, 2, 3, 4, 5)
+list2 = (6, 7, 8, 9, 10)
+
+print(list1)
+print(list1+list2)
+#print(list1+5)
+#print(list1-list2)
+#print(list1-5)
+#print(list1*list2)
+print(list1*2)
+#print(list1/list2)
+#print(list1/5)
+
+
+# %%
+
+import numpy as np
+a = np.array([[1,2],[3,4]])
+b = np.array([[5,6],[7,8]])
+c = np.add(a,b) #c=a+b
+print(c)
+d = np.dot(a,b)
+print(d)
+
+
+# %%
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+print('합:', fish.sum(), np.sum(fish))
+print('개수:', fish.size, np.size(fish))
+print('평균:',fish.mean(), np.mean(fish))
+
+
+# %%
+
+
+import numpy as np
+a = np.arange(20)
+print(a)
+print(a.reshape(4,5))
+print(a)
+
+
+
+
+
+
+# %%
+
+
+import pandas as pd
+df1 = pd.DataFrame({
+ 'a' : [1,2,3],
+ 'b' : [4,5,6]
+ })
+df2 = pd.DataFrame({
+ 'c' : [7,8,9],
+ 'd' : [10,11,12]
+ })
+cc = pd.concat([df1, df2], axis=0)
+print(cc, '\n')
+cc = pd.concat([df1, df2], axis=1)
+print(cc, '\n')
+
+
+
+
+
+
+
+
+# %%
+
+
+import pandas as pd
+a = pd.DataFrame(
+ [['A', 1], ['B', 2], ['C', 3]],
+ columns=['x1', 'x2']
+ )
+b = pd.DataFrame({
+ 'x1':['B','C','D'],
+ 'x3':[2,3,4]
+ })
+print(a,'\n')
+print(b,'\n')
+print(pd.concat([a,b]), '\n')
+print(pd.concat([a,b], axis=1), '\n')
+
+
+# %%
+
+
+import numpy as np
+import pandas as pd
+df1 = pd.DataFrame({
+'col1' : np.array([1,2,3]),
+'col2' : np.array(['A','B','C'])
+})
+df2= pd.DataFrame({
+'col1' : np.array([4,5,6]),
+'col2' : np.array(['D','E','F'])
+})
+print(pd.concat([df1,df2], axis = 1), '\n')
+
+
+# %%
+
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+
+fish1 = (fish - fish.min()) / fish.max()
+fish2 = (fish - fish.mean()) / fish.std()
+
+print(fish2)
+print(fish2.std())
+
+
+
+
+# %%
+
+
+import numpy as np
+import scipy.stats as ss
+
+fish = np.array([2, 3, 3, 4, 4, 4, 4, 5, 5, 6])
+
+# 데이터를 표준화
+fishs = ss.zscore(fish)
+
+print("표준화된 데이터:", fishs)
+
+
+
+
+
+
+
+
+# %%
+
+import numpy as np
+
+asdf = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
+
+
+
+print("데이터 수:", len(asdf))
+print("평균:", np.mean(asdf))
+print("분산:", np.var(asdf))
+print("표준편차:", np.std(asdf))
+
+
+
+
+
+
+
+# %%
+
+import scipy.stats as stats
+
+# 도깨비와 저승이의 점수
+score_dokkaebi = 90
+score_jeoseung = 90
+
+# 평균과 표준편차
+mean_dokkaebi, std_dokkaebi = 53.73, 29.85
+mean_jeoseung, std_jeoseung = 59.53, 22.97
+
+# 도깨비와 저승이의 점수를 표준 정규 분포로 변환
+z_score_dokkaebi = (score_dokkaebi - mean_dokkaebi) / std_dokkaebi
+z_score_jeoseung = (score_jeoseung - mean_jeoseung) / std_jeoseung
+
+# 백분위 순위 계산
+percentile_dokkaebi = stats.norm.cdf(z_score_dokkaebi) * 100
+percentile_jeoseung = stats.norm.cdf(z_score_jeoseung) * 100
+
+# 결과 출력
+print("도깨비의 백분위 순위:", percentile_dokkaebi)
+print("저승이의 백분위 순위:", percentile_jeoseung)
+
+
+
+
+
+
+
+
+
+
+# %%
+import pandas as pd
+import numpy as np
+
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None)
+print(x[0:4])
+print(x.size)
+print(x.columns[0])
+x.columns=['height']
+print(x.height[0])
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
 
 
 
@@ -2073,17 +2333,6 @@ print(str[1])
 
 
 
-# %%
-
-
-
-
-
-
-
-
-
-
 
 # %%
 
@@ -2099,29 +2348,6 @@ print(str[1])
 
 # %%
 
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
 
 
 
@@ -2157,17 +2383,6 @@ print(str[1])
 
 
 
-# %%
-
-
-
-
-
-
-
-
-
-
 
 # %%
 
@@ -2193,6 +2408,32 @@ print(str[1])
 
 
 
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
 # %%
 
 
@@ -2217,7 +2458,1096 @@ print(str[1])
 
 
 
+
 # %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
 
 
 
