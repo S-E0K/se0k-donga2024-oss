@@ -64,6 +64,17 @@ print(a.cumsum())
 print(a.cumprod())
 
 # %%
+
+import numpy as np
+a = np.tile(5, 9)
+print(a)
+a = np.full(5, 9)
+print(a)
+a = np.eye(3, dtype=int)
+print(a)
+
+
+# %%
 def seq(n):
     if n == 1:
         return 1
@@ -818,6 +829,7 @@ import matplotlib.pyplot as plt
 ratio = [22, 24, 6, 38, 10] # 비율
 labels = ['pizza', 'hamburger', 'pasta', 'chicken', 'bibimbab']
 plt.pie(ratio, labels=labels, autopct='%.1f%%') # 소숫점 이하 첫째 자릿수 퍼센트로 구현
+plt.title('asdfasdf')
 plt.show() # 따옴표는 복붙할 시 서식 달라질 수 있음
 
 
@@ -888,6 +900,7 @@ print(x.size)
 print(x.columns[0]) # 컬럼명 출력
 x.columns=['height'] # 컬럼명 지정
 print(x.size)
+print(x.columns[0])
 print(x.height[0])
 
 
@@ -897,7 +910,7 @@ print(x.height[0])
 #틀린거 찾기 2.5
 import pandas as pd
 import matplotlib as plt #1. matplotlib.pyplot
-data = pd.read_csv("C:/ ... /중학생_남자_키.txt")
+data = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
 plt.bar(data, label='bins=10', bins=10) #2. plt.hist
 plt.legend()
 
@@ -1409,6 +1422,7 @@ print(result) # 확인용 프린트
 plt.scatter(result['몸무게'], result['키']) # 산점도로 바꿈
 plt.xlabel('weight') # x축은 몸무게
 plt.ylabel('height') # y축은 키
+plt.title('asdfasdf')
 plt.savefig("C:/파이썬자료/psdata/20번 과제 산점도.png") # png파일로 산점도 그림 저장
 plt.show() # 보여주기
 
@@ -2268,186 +2282,6 @@ percentile_jeoseung = stats.norm.cdf(z_score_jeoseung) * 100
 # 결과 출력
 print("도깨비의 백분위 순위:", percentile_dokkaebi)
 print("저승이의 백분위 순위:", percentile_jeoseung)
-
-
-
-
-
-
-
-
-
-
-# %%
-import pandas as pd
-import numpy as np
-
-x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None)
-print(x[0:4])
-print(x.size)
-print(x.columns[0])
-x.columns=['height']
-print(x.height[0])
-
-
-
-
-
-
-
-
-
-# %%
-
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-x = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
-
-nm = plt.hist(x.냉면, label = "nm", bins = "auto")
-plt.legend()
-plt.show()
-
-sam = plt.hist(x.삼계탕, label = "sam", bins = "auto")
-plt.legend()
-plt.show()
-
-gim = plt.hist(x.김밥, label = "gim", bins = "auto")
-plt.legend()
-plt.show()
-
-
-
-
-# %%
-
-
-# 각 행의 의미를 설명하세요.
-import pandas as pd
-import matplotlib.pyplot as plt
-file_data = pd.read_csv("C:/파이썬자료/sample/sample1.csv")
-print(file_data[0:5])
-total_score = file_data['점수'] * 5 + file_data['출석']
-
-print(type(total_score))
-print(total_score)
-new_data = [file_data['이름'], total_score]
-print(type(new_data))
-result = pd.concat(new_data, axis=1, keys=['name', 'total'])
-print(type(result))
-print(result)
-result.to_excel("C:/파이썬자료/sample/result1.xlsx")
-plt.hist(total_score, label='score data', bins=7)
-plt.legend()
-plt.savefig("C:/파이썬자료/sample/histogram of score.png")
-plt.show()
-
-
-# %%
-
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-data = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
-
-result = pd.concat((data.냉면, data.비빔밥), axis=0, keys=['냉면', '비빔밥'])
-print(result.size)
-print(result)
-
-plt.hist(result, label = 'bins = 6', bins = 6)
-plt.legend()
-plt.savefig("C:/sabe.png")
-plt.show()
-
-
-
-# %%
-
-
-import pandas as pd
-df = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
-print(df.columns)
-df.columns = ['area','nang','bibim','kimchi','samsal','jja','samtang','kal','kimbob']
-print(df[0:2])
-
-
-# %%
-
-
-import numpy as np
-import pandas as pd
-df = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
-df = df.drop('지역', axis=1)
-print(df[0:3])
-print()
-print('데이터프레임 최대값 df.max() ==>')
-print(df.max())
-print()
-print('넘파이 최대값 np.max(df) ==>')
-print(np.max(df))
-print('넘파이 최대값 np.max(df, axis=0) ==>')
-print(np.max(df, axis=0))
-
-
-
-
-
-
-
-
-# %%
-
-
-import numpy as np
-import pandas as pd
-df = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
-print('df 냉면 평균 --> ', df.냉면.mean())
-print('df 냉면 분산 --> ', df.냉면.var())
-print()
-print('np 냉면 평균 --> ', np.mean(df.냉면))
-print('np 냉면 분산 --> ', np.round(np.var(df.냉면, ddof = 1), 2))
-
-
-
-print(len(df))
-print(df.size)
-print(np.size(df))
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
 
 
 
