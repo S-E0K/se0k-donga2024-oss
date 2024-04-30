@@ -2293,7 +2293,199 @@ print("저승이의 백분위 순위:", percentile_jeoseung)
 
 
 # %%
+import pandas as pd
+import numpy as np
 
+x = pd.read_csv("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt", header=None)
+print(x[0:4])
+print(x.size)
+print(x.columns[0])
+x.columns=['height']
+print(x.height[0])
+
+
+
+
+
+
+
+
+
+# %%
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
+
+nm = plt.hist(x.냉면, label = "nm", bins = "auto")
+plt.legend()
+plt.show()
+
+sam = plt.hist(x.삼계탕, label = "sam", bins = "auto")
+plt.legend()
+plt.show()
+
+gim = plt.hist(x.김밥, label = "gim", bins = "auto")
+plt.legend()
+plt.show()
+
+
+
+
+# %%
+
+
+# 각 행의 의미를 설명하세요.
+import pandas as pd
+import matplotlib.pyplot as plt
+file_data = pd.read_csv("C:/파이썬자료/sample/sample1.csv")
+print(file_data[0:5])
+total_score = file_data['점수'] * 5 + file_data['출석']
+
+print(type(total_score))
+print(total_score)
+new_data = [file_data['이름'], total_score]
+print(type(new_data))
+result = pd.concat(new_data, axis=1, keys=['name', 'total'])
+print(type(result))
+print(result)
+result.to_excel("C:/파이썬자료/sample/result1.xlsx")
+plt.hist(total_score, label='score data', bins=7)
+plt.legend()
+plt.savefig("C:/파이썬자료/sample/histogram of score.png")
+plt.show()
+
+
+# %%
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
+
+result = pd.concat((data.냉면, data.비빔밥), axis=0, keys=['냉면', '비빔밥'])
+print(result.size)
+print(result)
+
+plt.hist(result, label = 'bins = 6', bins = 6)
+plt.legend()
+plt.savefig("C:/sabe.png")
+plt.show()
+
+
+
+# %%
+
+
+import pandas as pd
+df = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
+print(df.columns)
+df.columns = ['area','nang','bibim','kimchi','samsal','jja','samtang','kal','kimbob']
+print(df[0:2])
+
+
+# %%
+
+
+import numpy as np
+import pandas as pd
+df = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
+df = df.drop('지역', axis=1)
+print(df[0:3])
+print()
+print('데이터프레임 최대값 df.max() ==>')
+print(df.max())
+print()
+print('넘파이 최대값 np.max(df) ==>')
+print(np.max(df))
+print('넘파이 최대값 np.max(df, axis=0) ==>')
+print(np.max(df, axis=0))
+
+
+# %%
+
+
+import numpy as np
+import pandas as pd
+df = pd.read_excel("C:/파이썬자료/외식비/외식비.xlsx")
+print('df 냉면 평균 --> ', df.냉면.mean())
+print('df 냉면 분산 --> ', df.냉면.var())
+print()
+print('np 냉면 평균 --> ', np.mean(df.냉면))
+print('np 냉면 분산 --> ', np.round(np.var(df.냉면, ddof = 1), 2))
+
+print(len(df))
+print(df.size)
+print(np.size(df))
+
+
+# %%
+
+
+
+# %%
+
+
+
+
+
+
+
+# %%
+
+
+import numpy as np
+fish = np.array([2,3,3,4,4,4,4,5,5,6])
+print('분산:',fish.var(), np.var(fish) )
+print('불편분산:',fish.var(ddof=1), np.var(fish, ddof=1) )
+print('표준편차:',fish.std(), np.std(fish) )
+print('불편표준편차:',fish.std(ddof=1), np.std(fish, ddof=1) )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+
+
+import numpy as np
+from scipy.stats import binom
+
+# 시행 횟수
+n = 3
+# 성공 확률
+p = 1/3
+
+# 이항분포 생성
+X_distribution = binom(n, p)
+
+# 기댓값
+expected_value = X_distribution.mean()
+
+# 분산
+variance = X_distribution.var()
+
+print("기댓값:", expected_value)
+print("분산:", variance)
 
 
 
