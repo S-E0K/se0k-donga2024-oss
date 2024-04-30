@@ -2424,13 +2424,17 @@ print(np.size(df))
 # %%
 
 
-
-
-
-
-
-
-
+from scipy.stats import binom
+n=50
+p=0.5
+percent_point=0.9
+k = binom.ppf(percent_point, n, p)
+print('k =', k )
+print()
+# 확인하기 위해서 누적분포함수 출력
+print('P(X≤29)=',binom.cdf(29, n, p))
+print('P(X≤30)=',binom.cdf(30, n, p))
+print('P(X≤31)=',binom.cdf(31, n, p))
 
 
 # %%
