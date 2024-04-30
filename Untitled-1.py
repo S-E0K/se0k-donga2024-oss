@@ -2440,26 +2440,48 @@ print('P(X≤31)=',binom.cdf(31, n, p))
 # %%
 
 
-
-
-
-
-
-
-
-
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy.stats import norm
+mu = 50
+sigma = 5
+x = np.arange(mu-30, mu+30, 0.1)
+y = norm.pdf(x, mu, sigma)
+plt.bar(x, y)
+plt.xlabel('X')
+plt.ylabel('f(X)')
+plt.title('normal distribution(mu=50, sigma=5)')
+plt.show()
 
 
 # %%
 
 
+#둘리 마루 그리기 04-30 확통 실습
+#실습 1
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy.stats import norm
+plt.rcParams['font.family'] = 'Malgun Gothic' 
+mu = 53
+sigma = 20
+x = np.arange(0, 100, 0.1)
+y = norm.pdf(x, mu, sigma)
+plt.bar(x, y)
+plt.xlabel('X')
+plt.ylabel('f(X)')
+plt.title('수학 A영역')
+plt.show()
 
-
-
-
-
-
-
+mu = 53
+sigma = 20
+x = np.arange(0, 100, 0.1)
+y = norm.pdf(x, mu, sigma)
+plt.bar(x, y)
+plt.xlabel('X')
+plt.ylabel('f(X)')
+plt.title('수학 B영역')
+plt.show()
 
 
 # %%
