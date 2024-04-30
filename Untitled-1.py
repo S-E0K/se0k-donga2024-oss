@@ -2463,23 +2463,23 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy.stats import norm
 plt.rcParams['font.family'] = 'Malgun Gothic' 
-mu = 53
-sigma = 20
+muA = 53
+sigmaA = 20
 x = np.arange(0, 100, 0.1)
-y = norm.pdf(x, mu, sigma)
+y = norm.pdf(x, muA, sigmaA)
 plt.bar(x, y)
 plt.xlabel('X')
-plt.ylabel('f(X)')
+plt.ylabel('정규분포')
 plt.title('수학 A영역')
 plt.show()
 
-mu = 53
-sigma = 20
+muB = 57
+sigmaB = 15
 x = np.arange(0, 100, 0.1)
-y = norm.pdf(x, mu, sigma)
-plt.bar(x, y)
+y = norm.pdf(x, muB, sigmaB)
+plt.bar(x, y, color='green')
 plt.xlabel('X')
-plt.ylabel('f(X)')
+plt.ylabel('P(X)')
 plt.title('수학 B영역')
 plt.show()
 
