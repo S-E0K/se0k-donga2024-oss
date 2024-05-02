@@ -2733,38 +2733,56 @@ print("분산:", variance)
 
 
 
+# 7  3
+# <3, 6, 2, 7, 5, 1, 4>
+a, b = map(int, input().split())
+yose = list(range(1, a + 1))
+print(yose)
+num = 0
+print(a, b)
 
 
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+while(len(yose) != 0):
+    num = (num + b - 1) % a # a 하면 안됨
+    print(yose.pop(num))
 
 
 # %%
 
 
+# 7  3
+# <3, 6, 2, 7, 5, 1, 4>
+a, b = map(int, input().split())
+yose = list(range(1, a + 1))
+
+num = 0
+print("<", end = "")
 
 
+while(len(yose) != 0):
+    num = (num + b - 1) % len(yose)  # 리스트의 길이로 나눈 나머지를 사용합니다.
+    if (len(yose) == 1): print(yose.pop(num), end = "")
+    else: print(yose.pop(num), end = ", ")
+print(">")
 
 
+# %%
 
 
+a = int(input())
 
+priQ = list()
 
+while(a > 0):
+    b = int(input())
+    if(b == 0):
+        if(len(priQ) == 0): print(0)
+        else:
+            minV = min(priQ)
+            print(minV)
+            priQ.remove(minV)
+    else: priQ.append(b)
+    a = a - 1
 
 
 # %%
