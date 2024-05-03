@@ -2788,11 +2788,84 @@ while(a > 0):
 # %%
 
 
+from scipy.stats import norm
+mu=0              # 평균
+sigma=1           # 표준편차
+# p. 26의 binorm.cdf 와 다름
+y1 = norm.cdf(0.5, mu, sigma)
+y2 = norm.cdf(-1.5, mu, sigma)
+print('P(-1.5≤Z≤0.5)=', y1-y2)
 
 
+# %%
 
 
+#둘리 마루 z = 1.1, 1.2
+from scipy.stats import norm
+mu=0              # 평균
+sigma=1           # 표준편차
+# p. 26의 binorm.cdf 와 다름
+dooli = norm.cdf(1.1, mu, sigma)
+maru= norm.cdf(1.2, mu, sigma)
+print('dooli cdf =' , dooli)
+print('maru cdf =' , maru)
 
+print('dooli 상위% =', round((1 - dooli)*100, 2))
+print('maru 상위% =', round((1 - maru)*100, 2))
+
+
+# %%
+
+
+from scipy.stats import norm
+mu=0
+sigma=1
+percent_point=0.9
+print('P(Z≤k)=0.9, k=',norm.ppf(percent_point, mu, sigma))
+
+
+# %%
+
+
+# 4장 8번
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy.stats import norm
+mu = 7
+sigma = 15
+
+x = np.arange(mu-50, mu+50, 0.1)
+y = norm.pdf(x, mu, sigma)
+
+plt.bar(x, y)
+plt.xlabel('X')
+plt.ylabel('f(X)')
+plt.title('normal distribution(mu=7, sigma=15)')
+plt.show()
+
+mu = 175
+sigma = 20
+
+x = np.arange(mu-50, mu+50, 0.1)
+y = norm.pdf(x, mu, sigma)
+
+plt.bar(x, y, color='green')
+plt.xlabel('X')
+plt.ylabel('f(X)')
+plt.title('normal distribution(mu=175, sigma=20)')
+plt.show()
+
+
+# %%
+
+
+#4장 10번
+from scipy.stats import norm
+mu=0              # 평균
+sigma=1           # 표준편차
+y1 = norm.cdf(2.5, mu, sigma)
+y2 = norm.cdf(1.5, mu, sigma)
+print(y1 - y2)
 
 
 
@@ -2800,58 +2873,11 @@ while(a > 0):
 # %%
 
 
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
+#4장 11번
+from scipy.stats import norm
+mu=75              # 평균
+sigma=10           # 표준편차
+print(1 - norm.cdf(90, mu, sigma))
 
 
 
