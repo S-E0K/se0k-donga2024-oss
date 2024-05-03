@@ -2863,7 +2863,7 @@ plt.show()
 from scipy.stats import norm
 mu=0              # 평균
 sigma=1           # 표준편차
-y1 = norm.cdf(2.5, mu, sigma)
+y1 = norm.cdf(-1.5, mu, sigma)
 y2 = norm.cdf(1.5, mu, sigma)
 print(y1 - y2)
 
@@ -2877,7 +2877,7 @@ print(y1 - y2)
 from scipy.stats import norm
 mu=75              # 평균
 sigma=10           # 표준편차
-print(1 - norm.cdf(90, mu, sigma))
+print(norm.cdf(80, mu, sigma) - norm.cdf(90, mu, sigma))
 
 
 
@@ -2893,14 +2893,8 @@ print(1 - norm.cdf(90, mu, sigma))
 from scipy.stats import norm
 mu=0
 sigma=1
-percent_point=0.975
+percent_point = 0.1
 print(norm.ppf(percent_point, mu, sigma))
-
-
-
-
-
-
 
 
 # %%
