@@ -2891,7 +2891,7 @@ print(norm.cdf(80, mu, sigma) - norm.cdf(90, mu, sigma))
 
 #4장 13번
 from scipy.stats import norm
-mu=0
+mu=0 # 표준화 하면 평균 0, 표편 1
 sigma=1
 percent_point = 0.1
 print(norm.ppf(percent_point, mu, sigma))
@@ -2900,39 +2900,35 @@ print(norm.ppf(percent_point, mu, sigma))
 # %%
 
 
+#4장 14번
+from scipy.stats import norm
+mu=300000
+sigma=100000
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+print(norm.cdf(350000, mu, sigma) - norm.cdf(250000, mu, sigma))
 
 
 # %%
 
 
+#4장 15번
+from scipy.stats import norm
+mu=70
+sigma=10
+
+print(1 - norm.cdf(95, mu, sigma))
+print(1500 * 0.0062, "명")
 
 
+# %%
 
 
-
-
-
-
+#4장 16번
+from scipy.stats import norm
+mu=75 
+sigma=10
+percent_point = 0.95
+print(norm.ppf(percent_point, mu, sigma))
 
 
 # %%
