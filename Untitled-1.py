@@ -2934,13 +2934,28 @@ print(norm.ppf(percent_point, mu, sigma))
 # %%
 
 
+import numpy as np
+import random
+from matplotlib import pyplot as plt
+from scipy.stats import norm
 
-
-
-
-
-
-
+plt.rcParams['font.family'] = 'Malgun Gothic'
+data = np.loadtxt("C:/파이썬자료/중학생_남자_키/중학생_남자_키.txt")
+N = len(data) # 4933
+n = 30 # n>=30
+trial = 200 # n개짜리 표본을 200번 추출 (충분히 여러 번 해줌)
+x = np.zeros(n) #표본 1개 (길이 30)
+xe = np.zeros(trial) #표본평균값들을 저장한 배열 (길이 200)
+for k in range(trial) :
+    for i in range(n) : 
+         x[i] = data[random.randint(0,N-1)]
+    xe[k] = np.mean(x) # 랜덤이므로 실행할 때마다 결과 조금씩 다름
+print('모집단', np.mean(data), np.var(data))
+print('표본평균',np.mean(xe), np.var(xe, ddof=1))
+ye = norm.pdf(xe, np.mean(xe), np.std(xe, ddof=1))
+plt.bar(xe, ye)
+plt.xlabel('표본평균 n='+str(n)); plt.ylabel('확률')
+plt.show()
 
 
 # %%
