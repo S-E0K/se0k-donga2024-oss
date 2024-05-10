@@ -2961,86 +2961,112 @@ plt.show()
 # %%
 
 
+import numpy as np
+
+x = np.array([8, 9, 8, 10, 10])
+print("표본 평균: ", np.mean(x))
+print("표본 분산: ", np.var(x))
+print("표본불편 분산: ", np.var(x, ddof = 1))
+# 추정 모집단 분산
 
 
+# %%
 
 
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy.stats import t # t 분포
+
+df=2 # 자유도
+x = np.arange(-4, 4, 0.01)
+y = t.pdf(x, df)
+plt.bar(x, y)
+plt.xlabel('X')
+plt.ylabel('f(X)')
+plt.title('t distribution(df=2)')
+plt.show()
 
 
+# %%
 
+
+from scipy.stats import t
+from scipy.stats import norm
+
+df=2
+y1 = t.cdf(2, df)
+y2 = t.cdf(-2, df)
+print('t분포 P(-2≤t≤2)=', y1-y2)
+
+# 정규분포
+mu=0
+sigma=1
+y1 = norm.cdf(2, mu, sigma)
+y2 = norm.cdf(-2, mu, sigma)
+print('표준정규분포 P(-2≤Z≤2)=', y1-y2)
+
+
+# %%
+
+
+from scipy.stats import t
+from scipy.stats import norm
+df=2
+percent_point=0.95
+print('t분포 P(t≤k)=0.95일 때 k=', t.ppf(percent_point, df))
+mu=0
+sigma=1
+print('표준정규분포 P(Z≤k)=0.95일 때 k=', norm.ppf(percent_point, mu, sigma))
+
+
+# %%
+
+
+#5장 확인문제 4
+from scipy.stats import t
+from scipy.stats import norm
+
+
+print("자유도 10: ", t.cdf(1, df = 10) - t.cdf(-1, df = 10)) # 1부터 -1까지 범위
+print("자유도 30: ", t.cdf(1, df = 30) - t.cdf(-1, df = 30))
+print("자유도 50: ", t.cdf(1, df = 50) - t.cdf(-1, df = 50))
+print("자유도 100: ", t.cdf(1, df = 100) - t.cdf(-1, df = 100)) # 점점 커진다
+
+mu = 0
+sigma = 1
+print("표준정규분포: ", norm.cdf(1, mu, sigma) - norm.cdf(-1, mu, sigma)) # 얘가 가장 큼
 
 
 
 # %%
 
 
+#5장 확인문제 5
+from scipy.stats import t
+from scipy.stats import norm
 
 
+print("자유도 100: ", t.ppf(0.95, df = 100))
 
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
+mu = 0
+sigma = 1
+print("표준정규분포: ", norm.ppf(0.95, mu, sigma)) # 얘가 가장 큼
 
 
 # %%
 
 
+#5장 확인문제 6
+#np.random.normal(평, 표, size) 얘 많이 사용
+#random.sample(range(20, 120), 10) 중복 불가
+#random.choices(range(20, 120), k=1000) 중복 가능
+import numpy as np
+import matplotlib.pyplot as plt
 
+x = np.random.normal(70, 15, size = 1000)
 
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
+plt.hist(x, bins = 11)
+plt.show()
 
 
 
