@@ -3069,27 +3069,23 @@ plt.hist(x, bins = 11)
 plt.show()
 
 
+# %%
 
+
+from scipy.stats import norm
+mu = 0
+sigma = 1
+print(norm.ppf(0.975, mu, sigma))
 
 
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
+# 임시 예제 14
+from scipy.stats import norm
+mu = 0
+sigma = 1
+print(norm.ppf(0.975, mu, sigma))
 
 
 
