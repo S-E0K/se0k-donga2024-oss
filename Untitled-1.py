@@ -3085,37 +3085,60 @@ print(norm.ppf(0.975, mu, sigma))
 from scipy.stats import norm
 mu = 0
 sigma = 1
-print(norm.ppf(0.975, mu, sigma))
-
-
-
-
-
+print(norm.ppf(0.975, mu, sigma)) # 95%
+print(norm.ppf(0.995, mu, sigma)) # 99%
 
 
 # %%
 
 
+# 예제 14 정규분포
+from scipy.stats import norm
+from scipy.stats import t
+import numpy as np
+mu = 70.4
+n = 50
+s = 6
+sem = s / np.sqrt(n)
+zu = norm.ppf(0.975, 0, 1) # 95%
 
+print('하한: ', mu - zu * sem)
+print('상한: ', mu + zu * sem)
 
+print(norm.interval(0.95, loc = mu, scale = sem))
 
+zu = norm.ppf(0.995, 0, 1) # 99%
 
+print('하한: ', mu - zu * sem)
+print('상한: ', mu + zu * sem)
 
-
-
+print(norm.interval(0.99, loc = mu, scale = sem))
+print('t분포: ', t.interval(0.99, df = 49, loc = mu, scale = sem))
 
 
 # %%
 
 
+# t 분포 5.2 20p
+import numpy as np
+from scipy.stats import t
+from scipy import stats
+# from scipy.stats import sem
+a = [260,265, 250,270, 272, 258, 262, 268, 270, 252]
+n = len(a)
+print( '평균', np.mean(a) )
 
+print('그냥 분산', np.var(a))
+print('불편 분산', np.var(a, ddof = 1))
 
-
-
-
-
-
-
+print( '불편표준편차 나누기 루트n -->', np.std(a,ddof=1) /np.sqrt(n) )
+print( '표준오차 SEM -->', stats.sem(a) )
+tu = t.ppf( 0.975, n-1 )
+print( 't값', tu )
+print( '하한', np.mean(a) - tu*stats.sem(a) )
+print( '상한', np.mean(a) + tu*stats.sem(a) )
+print( t.interval( 0.95, n-1, loc=np.mean(a), scale=stats.sem(a) ) )
+# n - 1 은 자유도 적은거
 
 
 # %%
