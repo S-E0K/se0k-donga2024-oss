@@ -3144,25 +3144,44 @@ print( t.interval( 0.95, n-1, loc=np.mean(a), scale=stats.sem(a) ) )
 # %%
 
 
+# 확인문제 15
+from scipy.stats import t
 
+n = 25
+x = 35
+s = 5
 
+tud = t.ppf(0.975, n - 1)
 
-
-
-
-
+print(tud)
+print("하한: ", x - tud)
+print("상한: ", x + tud)
 
 
 # %%
 
 
+# 확인문제 16
+import numpy as np
+from scipy.stats import t
 
 
+n = 20
+x = 170
+s = 15
 
+sem = s / np.sqrt(n)
 
+tud1 = t.ppf(0.975, n - 1) * sem
+tud2 = t.ppf(0.995, n - 1) * sem
 
+print(tud1)
+print("하한: ", x - tud1)
+print("상한: ", x + tud1)
 
-
+print(tud2)
+print("하한: ", x - tud2)
+print("상한: ", x + tud2)
 
 
 
