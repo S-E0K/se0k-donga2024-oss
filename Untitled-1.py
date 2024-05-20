@@ -3190,10 +3190,163 @@ print("99 상한: ", x + tud2)
 # %%
 
 
+# 데이터구조 과제
+import random
+
+def selectionSortRec(A, n):                       # 길이 n을 가지는 A 리스트의 선택 정렬(재귀)
+  if (n > 2):                                     # n이 2면 원소 한개에 대한 선택 정렬을 하므로 탈출
+    k = theLargestRec(A, n - 1)                   # 0에서 n - 1 (n이 0부터 시작하기 때문) 까지에서 최댓값 찾기
+    A[k], A[n - 1] = A[n - 1], A[k]               # 최댓값을 맨 마지막으로 보냄
+
+    selectionSortRec(A, n - 1)                    # 재귀
+
+def theLargestRec(A, last:int):                   # 가장 큰 원소 찾는 함수
+  largest = 0                                     # 일단 초기값 0으로 설정
+  for i in range(last):                           # 0부터 last - 1까지 루프
+    if (A[i] > largest + 1):
+      largest = i
+  return largest                                  # 가장 큰 값 반환
 
 
 
+def bubbleSortRec(A, n):
+  for i in range(n - 1):                          # 맨 마지막 요소를 빼고 계산 하는 이유가 아래에서 i + 1로 다음 요소까지 찾아버리기 때문
+    if (A[i] > A[i + 1]):                         # 오른쪽 값이 더 작으면
+      A[i], A[i + 1] = A[i + 1], A[i]             # 서로 바꿈
+  if (n > 1):
+    bubbleSortRec(A, n - 1)                       # 맨 마지막에 가장 큰 요소가 들어가서 그거 빼고 재귀
 
+
+
+def insertionSortRec(A, start, end):
+  value = A[start]                                # 시작하는 위치의 값
+  loc = start                                     # 시작하는 위치
+  while (loc > 0 and A[loc - 1] > value):         # 위치가 맨 앞이 아니고 이전 위치의 값이 현재 위치의 값보다 작으면 반복
+    A[loc] = A[loc - 1]                           # 새로 삽입되는 원소가 정렬된 리스트의 마지막 원소보다 작을 때 왼쪽으로 쉬프트
+    loc -= 1                                      # 정렬하는 원소의 위치를 왼쪽으로 이동
+  A[loc] = value                                  # 정해진 삽입위치에 삽입하고자 하는 원소 삽입
+
+  if (start + 1 < end):                           # 삽입되는 위치가 가장 마지막이 아닐 때
+    insertionSortRec(A, start + 1, end)           # 시작위치를 오른쪽으로 한 칸 옮겨서 재귀
+
+
+
+def mergeSort(A, start, end):
+    if end - start > 1:  # 배열의 길이가 1보다 크면 정렬을 수행
+        mid = (start + end) // 2  # 배열을 반으로 나누기 위한 중간 인덱스
+        mergeSort(A, start, mid)  # 왼쪽 반을 재귀적으로 정렬
+        mergeSort(A, mid, end)  # 오른쪽 반을 재귀적으로 정렬
+        merge(A, start, mid, end)  # 정렬된 두 부분을 병합
+
+def merge(A, start, mid, end):
+    left = [A[i] for i in range(start, mid)]  # 왼쪽 부분 배열을 A[start]부터 mid - 1 까지 저장 
+    right = [A[i] for i in range(mid, end)]  # 오른쪽 부분 배열을 mid부터 end - 1까지 저장
+
+    i = 0  # 왼쪽 부분의 인덱스
+    j = 0  # 오른쪽 부분의 인덱스
+    k = start  # 병합된 배열의 인덱스
+
+    while i < len(left) and j < len(right): # i가 왼쪽 부분 배열을 덜 돌았을 때, j가 오른쪽 배열을 덜 돌았을 때
+        if left[i] < right[j]:     # 왼쪽의 i번째 수가 오른쪽의 j번째 수보다 작으면
+            A[k] = left[i]         # A의 k번째에 저장
+            i += 1
+        else:
+            A[k] = right[j]        # A의 k번째에 저장
+            j += 1
+        k += 1                     
+
+    while i < len(left):           # 다 돌았는데 왼쪽 요소가 남았을 때
+        A[k] = left[i]             # A의 뒤쪽에 다 저장
+        i += 1
+        k += 1
+
+    while j < len(right):          # 다 돌았는데 오른쪽 요소가 남았을 때
+        A[k] = right[j]            # A의 뒤쪽에 다 저장
+        j += 1
+        k += 1
+        
+        
+
+def quickSort(A, p:int, r:int):
+    if p < r:
+        if r - p + 1 <= 100:  # 배열의 크기가 충분히 작으면(임의로 100으로 잡음) 삽입 정렬 사용
+            insertionSortRec(A, p, r)
+        else:
+            q = randomizedPartition(A, p, r)      # 기준 값이 맨 마지막이 아닌 배열 안에 있는 랜덤한 하나의 값으로 기준을 잡음
+            quickSort(A, p, q - 1)                # 왼쪽 부분 정렬
+            quickSort(A, q + 1, r)                # 오른쪽 부분 정렬
+
+def insertionSortRec(A, start, end):
+  value = A[start]                                # 시작하는 위치의 값
+  loc = start                                     # 시작하는 위치
+  while (loc > 0 and A[loc - 1] > value):         # 위치가 맨 앞이 아니고 이전 위치의 값이 현재 위치의 값보다 작으면 반복
+    A[loc] = A[loc - 1]                           # 새로 삽입되는 원소가 정렬된 리스트의 마지막 원소보다 작을 때 왼쪽으로 쉬프트
+    loc -= 1                                      # 정렬하는 원소의 위치를 왼쪽으로 이동
+  A[loc] = value                                  # 정해진 삽입위치에 삽입하고자 하는 원소 삽입
+
+  if (start + 1 < end):                           # 삽입되는 위치가 가장 마지막이 아닐 때
+    insertionSortRec(A, start + 1, end)           # 시작위치를 오른쪽으로 한 칸 옮겨서 재귀
+
+def partition(A, p:int, r:int):                   # 반으로 나눴을 때
+    x = A[r]                                      # 
+    i = p - 1
+    for j in range(p, r):
+        if A[j] < x:
+            i += 1
+            A[i], A[j] = A[j], A[i]
+    A[i + 1], A[r] = A[r], A[i + 1]
+    return i + 1
+
+def randomizedPartition(A, p:int, r:int):
+    i = random.randint(p, r)
+    A[r], A[i] = A[i], A[r]
+    return partition(A, p, r)
+        
+
+
+# %%
+
+
+import random
+import time
+import sys
+
+listLength = 10000
+sys.setrecursionlimit(listLength * 100)
+
+A = []
+for value in range(0, listLength):
+  A.append(random.randint(0, 100))
+
+B = A
+start = time.time()
+selectionSortRec(B, listLength)
+end = time.time()
+print('SelectionSortRec Time: ', end - start)
+
+B = A
+start = time.time()
+bubbleSortRec(B, listLength)
+end = time.time()
+print('bubbleSortRec Time: ', end - start)
+
+B = A
+start = time.time()
+insertionSortRec(B, 1, listLength)
+end = time.time()
+print('insertionSortRec Time: ', end - start)
+
+B = A
+start = time.time()
+mergeSort(B, 0, listLength - 1)
+end = time.time()
+print('mergeSort Time: ', end - start)
+
+B = A
+start = time.time()
+quickSort(B, 0, listLength - 1)
+end = time.time()
+print('quickSort Time: ', end - start)
 
 
 
@@ -3211,22 +3364,7 @@ print("99 상한: ", x + tud2)
 
 
 
-
 # %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
 
 
 
