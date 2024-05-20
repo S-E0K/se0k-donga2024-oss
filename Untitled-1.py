@@ -3148,24 +3148,6 @@ print( t.interval( 0.95, n-1, loc=np.mean(a), scale=stats.sem(a) ) )
 
 
 
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-
 # %%
 
 
