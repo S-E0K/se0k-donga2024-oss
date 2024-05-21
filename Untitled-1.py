@@ -3269,7 +3269,7 @@ def merge(A, start, mid, end):
 
 def quickSort(A, p:int, r:int):
     if p < r:
-        if r - p + 1 <= 100:  # 배열의 크기가 충분히 작으면(임의로 100으로 잡음) 삽입 정렬 사용
+        if r - p + 1 <= 100:  # 배열의 크기가 충분히 작으면(임의로 잡음) 삽입 정렬 사용
             insertionSortRec(A, p, r)
         else:
             q = randomizedPartition(A, p, r)      # 기준 값이 맨 마지막이 아닌 배열 안에 있는 랜덤한 하나의 값으로 기준을 잡음
@@ -3287,66 +3287,171 @@ def insertionSortRec(A, start, end):
   if (start + 1 < end):                           # 삽입되는 위치가 가장 마지막이 아닐 때
     insertionSortRec(A, start + 1, end)           # 시작위치를 오른쪽으로 한 칸 옮겨서 재귀
 
-def partition(A, p:int, r:int):                   # 반으로 나눴을 때
-    x = A[r]                                      # 
-    i = p - 1
-    for j in range(p, r):
-        if A[j] < x:
-            i += 1
-            A[i], A[j] = A[j], A[i]
-    A[i + 1], A[r] = A[r], A[i + 1]
-    return i + 1
+def partition(A, p:int, r:int):                   # 분할
+    x = A[r]                                      # 기준 원소
+    i = p - 1                                     # 왼쪽 구역의 마지막              이거 집어넣는거 뒤로 집어넣게 하는거 고민해야함
+    for j in range(p, r):                         # 오른쪽 구역
+        if A[j] < x:                              # j번째 원소가 기준 원소보다 작으면
+            i += 1                                # 2구역의 시작점을 오른쪽으로 한칸 이동
+            A[i], A[j] = A[j], A[i]               # j번째 원소랑 i번째 원소를 바꾼다
+    A[i + 1], A[r] = A[r], A[i + 1]               # 기준 원소와 2구역 첫번째 원소 바꿈
+    return i + 1                                  # 기준 원소 위치 리턴
 
-def randomizedPartition(A, p:int, r:int):
-    i = random.randint(p, r)
-    A[r], A[i] = A[i], A[r]
-    return partition(A, p, r)
+def randomizedPartition(A, p:int, r:int):         # 랜덤으로 시작 원소 결정
+    i = random.randint(p, r)                      # 처음과 끝 중에서 위치를 찾음
+    A[r], A[i] = A[i], A[r]                       # 해당 위치의 원소를 맨 뒤 원소랑 바꿈
+    return partition(A, p, r)                     # 분할
+
+
+
+def heapSort(A) :
+    buildHeap(A)                                  # 힙 만들기
+    for last in range(len(A) - 1, 0, -1) :        # 마지막 원소에 루트노드가 오게 하고 이를 제외한 힙 재생성
+        A[last], A[0] = A[0], A[last]             # 마지막 원소와 처음 원소 바꾸기
+        percolateDawn(A, 0, last - 1)             # 스며내리기
         
+def buildHeap(A) :                                # 힙 만들기
+    for i in range((len(A) - 2) // 2, -1, -1) :   # 맨 마지막 노드의 부모노드부터 시작
+        percolateDawn(A, i, len(A) - 1)           # 스며내리기
+        
+def percolateDawn(A, k:int, end:int) :            # 스며내리기
+    child = 2 * k + 1                             # 자식 노드 왼쪽
+    right = 2 * k + 2                             # 자식 노드 오른쪽
+    if (child <= end) :                           # 자식 노드가 마지막 노드가 아닐 때
+        if (right <= end and A[child] < A[right]) : # 자식 노드가 마지막 노드가 아니고 오른쪽 자식이 왼쪽 자식보다 클 때
+            chile = right                         # 오른쪽 자식 지정
+            
+        if (A[k] < A[child]) :                    # 지정 노드가 자식 노드보다 작으면
+            A[k], A[child] = A[child], A[k]       # 스며내리기 하고
+            percolateDawn(A, child, end)          # 다시 본다
+        
+        
+        
+def shellSort(A) :
+    H = gapSequence(len(A))                       # 갭을 얼마나 줄건지 계산
+    for h in H :                                  # H에 담긴 갭이 h, 갭의 수 만큼 반복
+        for k in range(h) :                       # 0부터 h - 1 까지 반복
+            stepInsertionSort(A, k, h)            # 정렬
+        
+def stepInsertionSort(A, k:int, h:int) :           
+    for i in range(k + h, len(A), h) :            # h는 갭이고 k+h부터 시작해 갭만큼 이동, A의 길이만큼 반복
+        j = i - h                                 # i에서 갭만큼 왼쪽으로 이동
+        newItem = A[i]                            # A 리스트에서 i번째 요소를 저장
+        while(0 <= j and newItem < A[j]) :        # j가 0 이상, A[i]가 A[j]보다 작을 때
+            A[j + h] = A[j]                       # j + h = i, 오른쪽에 있는 수에 왼쪽의 수를 저장
+            j -= h                                # 갭 만큼 왼쪽으로 이동
+        A[j + h] = newItem                        # 저장된 요소를 제일 처음 갭 시작 요소에 저장
+          
+def gapSequence(n:int) :                          # 갭 만들기
+    H = [1]; gap = 1                              # 리스트의 시작은 1, 갭도 1
+    while (gap < n / 5) :                         # 갭이 A 길이 / 5 보다 작으면
+        gap = 3 * gap + 1                         # 지정된 만큼 갭을 정한다
+        H.append(gap)                             # 정해진 갭을 리스트에 넣음
+    H.reverse()                                   # 리스트를 반대로 돌린다
+    return H                                      # 리스트 리턴
+        
+
+
+
+
 
 
 # %%
 
-
+import numpy as np
 import random
 import time
 import sys
 
-listLength = 10000
-sys.setrecursionlimit(listLength * 100)
+listLength = 300
+sys.setrecursionlimit(listLength * 10000)
 
-A = []
-for value in range(0, listLength):
-  A.append(random.randint(0, 100))
 
-B = A
-start = time.time()
-selectionSortRec(B, listLength)
-end = time.time()
-print('SelectionSortRec Time: ', end - start)
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    selectionSortRec(A, listLength)
+    end = time.time()
+    C.append(end - start)
+    
+print('SelectionSortRec Time: ', np.mean(C) * 1000)
 
-B = A
-start = time.time()
-bubbleSortRec(B, listLength)
-end = time.time()
-print('bubbleSortRec Time: ', end - start)
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    bubbleSortRec(A, listLength)
+    end = time.time()
+    C.append(end - start)
+    
+print('bubbleSortRec Time: ', np.mean(C) * 1000)
 
-B = A
-start = time.time()
-insertionSortRec(B, 1, listLength)
-end = time.time()
-print('insertionSortRec Time: ', end - start)
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    insertionSortRec(A, 1, listLength)
+    end = time.time()
+    C.append(end - start)
+    
+print('insertionSortRec Time mean: ', np.mean(C) * 1000)
 
-B = A
-start = time.time()
-mergeSort(B, 0, listLength - 1)
-end = time.time()
-print('mergeSort Time: ', end - start)
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    mergeSort(A, 0, listLength - 1)
+    end = time.time()
+    C.append(end - start)
+    
+print('mergeSort Time: ', np.mean(C) * 1000)
 
-B = A
-start = time.time()
-quickSort(B, 0, listLength - 1)
-end = time.time()
-print('quickSort Time: ', end - start)
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    quickSort(A, 0, listLength - 1)
+    end = time.time()
+    C.append(end - start)
+    
+print('quickSort Time: ', np.mean(C) * 1000)
+
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    heapSort(A)
+    end = time.time()
+    C.append(end - start)
+    
+print('heapSort Time: ', np.mean(C) * 1000)
+
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    shellSort(A)
+    end = time.time()
+    C.append(end - start)
+    
+print('shellSort Time: ', np.mean(C) * 1000)
+
+
 
 
 
