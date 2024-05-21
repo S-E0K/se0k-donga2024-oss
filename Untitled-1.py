@@ -3355,10 +3355,67 @@ print('quickSort Time: ', end - start)
 # %%
 
 
+# 확인문제 15
+from scipy.stats import t
+
+n = 25
+x = 35
+s = 5
+
+sem = s / np.sqrt(n)
+
+tud = t.ppf(0.975, n - 1) * sem
+
+print(tud)
+print("하한: ", x - tud)
+print("상한: ", x + tud)
 
 
+# %%
 
 
+# 확인문제 16
+import numpy as np
+from scipy.stats import t
+
+
+n = 20
+x = 170
+s = 15
+
+sem = s / np.sqrt(n)
+
+tud1 = t.ppf(0.975, n - 1) * sem
+tud2 = t.ppf(0.995, n - 1) * sem
+
+print(tud1)
+print("하한: ", x - tud1)
+print("상한: ", x + tud1)
+
+print(tud2)
+print("하한: ", x - tud2)
+print("상한: ", x + tud2)
+
+
+# %%
+
+
+# 확인문제 19 임시
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+n = 30
+trial = 1000
+
+# 데이터 읽기
+data = np.loadtxt("C:/파이썬자료/data30000.txt") # 30000개짜리 1차원 배열
+print(data[0])
+
+# 1차원 데이터를 1000행 30열 2차원 배열로 바꾸고 싶을 때 바꾸는 라인
+data.reshape(trial, n)
+
+print(data[0]) # 0 행에 있는 30개 숫자 출력
 
 
 
@@ -3367,12 +3424,33 @@ print('quickSort Time: ', end - start)
 # %%
 
 
+# 확인문제 19
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+n = 30
+trial = 1000
+
+# 데이터 읽기
+data = np.loadtxt("C:/파이썬자료/data30000.txt")
+
+x = np.zeros(trial) # 1000개의 평균을 저장할 배열 x 초기화
+for i in range(trial) :
+     x[i] = np.mean(data[i])
+
+print("표본평균 중 최대 최소: ", np.min(x), np.max(x))
+print("표본평균들의 중앙값: ", np.median(x))
+print("표본평균들의 평균을 모평균으로 추정: ", np.mean(x))
+print("표본평균들의 표준편차 곱하기 루트n: ", np.std(x, ddof = 1) * np.sqrt(n))
 
 
+y = norm.pdf(x, np.mean(x), np.std(x)) # 확률밀도함수 pdf
+plt.bar(x, y)
+plt.show()
 
-
-
-
+plt.hist(x, bins = 11, color = 'green') # 히스토그램: 밀도
+plt.show()
 
 
 # %%
