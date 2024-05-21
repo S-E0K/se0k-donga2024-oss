@@ -3437,7 +3437,7 @@ data = np.loadtxt("C:/파이썬자료/data30000.txt")
 
 x = np.zeros(trial) # 1000개의 평균을 저장할 배열 x 초기화
 for i in range(trial) :
-     x[i] = np.mean(data[i])
+     x[i] = np.mean(data[i]) # 정규분포
 
 print("표본평균 중 최대 최소: ", np.min(x), np.max(x))
 print("표본평균들의 중앙값: ", np.median(x))
@@ -3456,26 +3456,45 @@ plt.show()
 # %%
 
 
+# 확인문제 20번
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
 
+data = [99.46, 44.22, 99.22, 83.76, 66.62, 42.94, 6.06, 83.29, 31.34, 38.14,
+ 51.02, 66.29, 22.78, 59.72, 6.93, 80.04, 27.39, 76.67, 85.30, 50.60,
+ 34.51, 96.39, 9.84, 99.05, 0.16, 27.69, 12.74, 3.52, 7.13, 27.74]
 
+print('모집단 평균 추정: ', np.mean(data))
+print('모집단 표준편차 추정: ', np.std(data, ddof = 1)) # 오리지날 데이터기 때문에 곱하는거 없음
 
-
-
-
-
+plt.hist(data, bins = 6)
+plt.show()
 
 
 # %%
 
 
+# 확인문제 21번
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
 
+data = [99.46, 44.22, 99.22, 83.76, 66.62, 42.94, 6.06, 83.29, 31.34, 38.14,
+ 51.02, 66.29, 22.78, 59.72, 6.93, 80.04, 27.39, 76.67, 85.30, 50.60,
+ 34.51, 96.39, 9.84, 99.05, 0.16, 27.69, 12.74, 3.52, 7.13, 27.74]
 
+n = 30
 
+zu = norm.ppf(0.975, 0, 1) # 1.96
 
+m = np.mean(data)
+s = np.std(data, ddof = 1)
 
+print("하한: ", m - zu * s / np.sqrt(n))
+print("상한: ", m + zu * s / np.sqrt(n))
 
-
-
+print(norm.interval(0.95, m, s / np.sqrt(n))) # s / np.sqrt(n): 표준 오차
 
 
 # %%
