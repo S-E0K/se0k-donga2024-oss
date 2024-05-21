@@ -3475,7 +3475,7 @@ plt.show()
 # %%
 
 
-# 확인문제 21번
+# 확인문제 21번 - 1
 import numpy as np
 from scipy.stats import norm
 from scipy.stats import t
@@ -3496,20 +3496,32 @@ print("하한: ", m - zu * s / np.sqrt(n))
 print("상한: ", m + zu * s / np.sqrt(n))
 
 print(norm.interval(0.95, m, s / np.sqrt(n))) # s / np.sqrt(n): 표준 오차
-
 print(t.interval(0.95, n - 1, m, s / np.sqrt(n))) # t 분포는 자유도 추가
 
 
 # %%
 
 
+# 확인문제 21번 - 2
+import numpy as np
+from scipy.stats import norm
+from scipy.stats import t
+import matplotlib.pyplot as plt
 
+data = np.loadtxt("C:/파이썬자료/data30000.txt")
 
+n = 30000
 
+zu = norm.ppf(0.975, 0, 1) # 1.96
 
+m = np.mean(data)
+s = np.std(data, ddof = 1)
 
+print("하한: ", m - zu * s / np.sqrt(n))
+print("상한: ", m + zu * s / np.sqrt(n))
 
-
+print(norm.interval(0.95, m, s / np.sqrt(n)))
+# 분산이 작으면 효율성, 데이터가 많아지면 일치성
 
 
 # %%
