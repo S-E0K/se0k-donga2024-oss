@@ -3156,8 +3156,8 @@ sem = s / np.sqrt(n)
 tud = t.ppf(0.975, n - 1) * sem
 
 print(tud)
-print("95 하한: ", x - tud)
-print("95 상한: ", x + tud)
+print("하한: ", x - tud)
+print("상한: ", x + tud)
 
 
 # %%
@@ -3178,12 +3178,12 @@ tud1 = t.ppf(0.975, n - 1) * sem
 tud2 = t.ppf(0.995, n - 1) * sem
 
 print(tud1)
-print("95 하한: ", x - tud1)
-print("95 상한: ", x + tud1)
+print("하한: ", x - tud1)
+print("상한: ", x + tud1)
 
 print(tud2)
-print("99 하한: ", x - tud2)
-print("99 상한: ", x + tud2)
+print("하한: ", x - tud2)
+print("상한: ", x + tud2)
 
 
 
