@@ -3478,6 +3478,7 @@ plt.show()
 # 확인문제 21번
 import numpy as np
 from scipy.stats import norm
+from scipy.stats import t
 import matplotlib.pyplot as plt
 
 data = [99.46, 44.22, 99.22, 83.76, 66.62, 42.94, 6.06, 83.29, 31.34, 38.14,
@@ -3495,6 +3496,8 @@ print("하한: ", m - zu * s / np.sqrt(n))
 print("상한: ", m + zu * s / np.sqrt(n))
 
 print(norm.interval(0.95, m, s / np.sqrt(n))) # s / np.sqrt(n): 표준 오차
+
+print(t.interval(0.95, n - 1, m, s / np.sqrt(n))) # t 분포는 자유도 추가
 
 
 # %%
