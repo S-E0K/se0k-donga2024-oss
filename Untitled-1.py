@@ -3192,7 +3192,9 @@ print("상한: ", x + tud2)
 
 # 데이터구조 과제
 import random
+import math
 
+# 선택 정렬
 def selectionSortRec(A, n):                       # 길이 n을 가지는 A 리스트의 선택 정렬(재귀)
   if (n > 2):                                     # n이 2면 원소 한개에 대한 선택 정렬을 하므로 탈출
     k = theLargestRec(A, n - 1)                   # 0에서 n - 1 (n이 0부터 시작하기 때문) 까지에서 최댓값 찾기
@@ -3208,7 +3210,7 @@ def theLargestRec(A, last:int):                   # 가장 큰 원소 찾는 함
   return largest                                  # 가장 큰 값 반환
 
 
-
+# 버블 정렬
 def bubbleSortRec(A, n):
   for i in range(n - 1):                          # 맨 마지막 요소를 빼고 계산 하는 이유가 아래에서 i + 1로 다음 요소까지 찾아버리기 때문
     if (A[i] > A[i + 1]):                         # 오른쪽 값이 더 작으면
@@ -3217,7 +3219,7 @@ def bubbleSortRec(A, n):
     bubbleSortRec(A, n - 1)                       # 맨 마지막에 가장 큰 요소가 들어가서 그거 빼고 재귀
 
 
-
+# 삽입 정렬
 def insertionSortRec(A, start, end):
   value = A[start]                                # 시작하는 위치의 값
   loc = start                                     # 시작하는 위치
@@ -3230,7 +3232,7 @@ def insertionSortRec(A, start, end):
     insertionSortRec(A, start + 1, end)           # 시작위치를 오른쪽으로 한 칸 옮겨서 재귀
 
 
-
+# 병합 정렬
 def mergeSort(A, start, end):
     if end - start > 1:  # 배열의 길이가 1보다 크면 정렬을 수행
         mid = (start + end) // 2  # 배열을 반으로 나누기 위한 중간 인덱스
@@ -3266,7 +3268,7 @@ def merge(A, start, mid, end):
         k += 1
         
         
-
+# 퀵 정렬
 def quickSort(A, p:int, r:int):
     if p < r:
         if r - p + 1 <= 100:  # 배열의 크기가 충분히 작으면(임의로 잡음) 삽입 정렬 사용
@@ -3303,7 +3305,7 @@ def randomizedPartition(A, p:int, r:int):         # 랜덤으로 시작 원소 �
     return partition(A, p, r)                     # 분할
 
 
-
+# 힙 정렬
 def heapSort(A) :
     buildHeap(A)                                  # 힙 만들기
     for last in range(len(A) - 1, 0, -1) :        # 마지막 원소에 루트노드가 오게 하고 이를 제외한 힙 재생성
@@ -3326,7 +3328,7 @@ def percolateDawn(A, k:int, end:int) :            # 스며내리기
             percolateDawn(A, child, end)          # 다시 본다
         
         
-        
+# 쉘 정렬
 def shellSort(A) :
     H = gapSequence(len(A))                       # 갭을 얼마나 줄건지 계산
     for h in H :                                  # H에 담긴 갭이 h, 갭의 수 만큼 반복
@@ -3351,10 +3353,66 @@ def gapSequence(n:int) :                          # 갭 만들기
     return H                                      # 리스트 리턴
         
 
+# 계수 정렬
+def countingSort(A) :                             
+    k = max(A)                                    # 배열에서 가장 큰 값
+    C = [0 for _ in range (k + 1)]                # 해당 값의 크기만큼 배열 생성, 초기화
+    
+    for j in range(len(A)) :                      # 배열 길이만큼 반복
+        C[A[j]] += 1                              # A의 j번째 값이 보이면(예를 들어 2) C[2]의 값에 + 1
+    
+    for i in range(1, k + 1) :                    # 1부터 k까지 반복
+        C[i] += C[i - 1]                          # 각 요소에서 이전 요소 값 더함 - 누적
+    
+    B = [0 for _ in range(len(A))]                # 새로운 배열 B 초기화
+    for j in range(len(A) - 1, -1, -1) :          # A 배열을 뒤에서부터 읽음
+        B[C[A[j]] - 1] =  A[j]                    # A[j] 값에 해당하는 C 배열의 요소를 찾아 B에 넣음
+        C[A[j]] -= 1                              # C 배열 요소 값 - 1
+        
+    return B
 
 
+# 기수 정렬
+def radixSort(A) :
+    maxValue = max(A)                             # A의 가장 큰 값
+    numDigits = math.ceil(math.log10(maxValue))   # 가장 큰 값의 자릿수 계산
+    
+    bucket = [[] for _ in range(10)]              # 0부터 9까지 빈 리스트
 
+    for i in range(numDigits) :                   # 자릿수만큼 반복
+        for x in A :                              # i가 A에 있을 때
+            y = (x // 10 ** i) % 10               # i번째 자리에 해당하는 숫자 찾기
+            bucket[y].append(x)                   # 각 i번째 자리에 저장
+            
+        A.clear()                                 # A 지우기
+        for j in range(10) :                      
+            A.extend(bucket[j])                   # A에 버킷의 j번째 숫자들 추가
+            bucket[j].clear()                     # 버킷 지우기
+        
+        
+# 버킷 정렬
+def bukitSort(A) :
+    n = len(A)                                    # 배열 A의 길이
+    B = [[] for _ in range(n)]                    # 길이만큼 빈칸으로 리스트 생성
+    for i in range(n) :                           # n만큼 반복
+        index = min(n - 1, math.floor(n * A[i]))  # 정수로 변환하여 버킷을 찾음, n - 1을 넘지 않도록 조정
+        B[index].append(A[i])                     # A[i] 값을 B에 저장
 
+    A.clear()                                     # A 비움
+    for i in range(n) :
+        insertionSort(B[i])                       # 버킷 내부 정령
+        A.extend(B[i])                            # B를 A로 이동
+        
+def insertionSort(A) :                            # 삽입정렬
+    for i in range(1, len(A)) :                   # 1부터 길이 - 1까지 반복
+        loc = i - 1                               # 위치 찾기
+        newItem = A[i]                            # 정렬 할 요소 저장
+        while (loc >= 0 and newItem < A[loc]) :   # 위치가 0 이상, 해당 요소가 A[loc]보다 작을 때
+            A[loc + 1] = A[loc]                   # A[i]에 A[loc] 저장
+            loc -= 1                              # loc - 1
+        A[loc + 1] = newItem                      # A[i]에 newItem 저장
+        
+    
 
 # %%
 
@@ -3362,10 +3420,14 @@ import numpy as np
 import random
 import time
 import sys
+import matplotlib.pyplot as plt
+
 
 listLength = 300
 sys.setrecursionlimit(listLength * 10000)
 
+sortName = ["선택", "버블", "삽입", "병합", "퀵", "힙", "쉘", "계수", "기수", "버킷"]
+times = []
 
 C = []
 for i in range(10000) :
@@ -3376,8 +3438,8 @@ for i in range(10000) :
     selectionSortRec(A, listLength)
     end = time.time()
     C.append(end - start)
-    
-print('SelectionSortRec Time: ', np.mean(C) * 1000)
+times.append(np.mean(C))
+print('selectionSortRec Time: ', np.mean(C) * 1000)
 
 C = []
 for i in range(10000) :
@@ -3388,7 +3450,7 @@ for i in range(10000) :
     bubbleSortRec(A, listLength)
     end = time.time()
     C.append(end - start)
-    
+times.append(np.mean(C))
 print('bubbleSortRec Time: ', np.mean(C) * 1000)
 
 C = []
@@ -3400,7 +3462,7 @@ for i in range(10000) :
     insertionSortRec(A, 1, listLength)
     end = time.time()
     C.append(end - start)
-    
+times.append(np.mean(C))
 print('insertionSortRec Time mean: ', np.mean(C) * 1000)
 
 C = []
@@ -3412,7 +3474,7 @@ for i in range(10000) :
     mergeSort(A, 0, listLength - 1)
     end = time.time()
     C.append(end - start)
-    
+times.append(np.mean(C))
 print('mergeSort Time: ', np.mean(C) * 1000)
 
 C = []
@@ -3424,7 +3486,7 @@ for i in range(10000) :
     quickSort(A, 0, listLength - 1)
     end = time.time()
     C.append(end - start)
-    
+times.append(np.mean(C))
 print('quickSort Time: ', np.mean(C) * 1000)
 
 C = []
@@ -3436,7 +3498,7 @@ for i in range(10000) :
     heapSort(A)
     end = time.time()
     C.append(end - start)
-    
+times.append(np.mean(C))
 print('heapSort Time: ', np.mean(C) * 1000)
 
 C = []
@@ -3448,8 +3510,58 @@ for i in range(10000) :
     shellSort(A)
     end = time.time()
     C.append(end - start)
-    
+times.append(np.mean(C))
 print('shellSort Time: ', np.mean(C) * 1000)
+
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    countingSort(A)
+    end = time.time()
+    C.append(end - start)
+times.append(np.mean(C))
+print('countingSort Time: ', np.mean(C) * 1000)
+
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    radixSort(A)
+    end = time.time()
+    C.append(end - start)
+times.append(np.mean(C))
+print('radixSort Time: ', np.mean(C) * 1000)
+
+C = []
+for i in range(10000) :
+    A = []
+    for value in range(0, listLength):
+        A.append(random.randint(0, 100))
+    start = time.time()
+    bukitSort(A)
+    end = time.time()
+    C.append(end - start)
+times.append(np.mean(C))
+print('bukitSort Time: ', np.mean(C) * 1000)
+
+plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.bar(sortName, times)
+plt.xlabel("sort Name")
+plt.ylabel("solt time")
+plt.title("300개 만번 평균 시간")
+plt.show()
+
+# %%
+
+# 데이터구조 누적 정렬시간 그래프
+
+
+
 
 
 
