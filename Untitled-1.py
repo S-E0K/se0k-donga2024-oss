@@ -3844,6 +3844,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
 
+# 가설 H0: mu = 68000 어쩌고 저쩌고
+# 가설 H1: mu < 68000 더 많이 내고 저꺼고
+
 data = pd.read_csv("C:/파이썬자료/스마트폰_이용요금.txt", header = None) # 컬럼명 미포함
 mu=68000
 n=80 # data.size
