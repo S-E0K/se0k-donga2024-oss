@@ -3849,7 +3849,7 @@ mu=68000
 n=80 # data.size
 print(data.describe()) # 참고용
 
-plt.hist(data, label='Phone times', bins=7)
+plt.hist(data, label='Phone times', bins=8)
 plt.legend(); plt.show()
 
 
@@ -3863,12 +3863,6 @@ print(result)
 
 if p < 0.05 : print('H0기각')
 else : print('H0를 기각할 수 없음')
-
-
-
-
-
-
 
 
 # %%
