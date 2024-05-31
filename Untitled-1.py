@@ -3744,45 +3744,125 @@ print(norm.interval(0.95, m, s / np.sqrt(n)))
 # %%
 
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+
+data = pd.read_excel("C:/파이썬자료/커피가격.xlsx") # 컬럼명 포함
+mu=3055
+n=42 # data.size
+print(data.describe()) # 참고용
+
+plt.hist(data, label='Coffee Price', bins=7)
+plt.legend(); plt.show()
 
 
+#np.mean(data) == data.mean(), np.std(data, ddof=1) == data.std(ddof = 1)
+t = (np.mean(data) - mu) / (np.std(data, ddof=1) / np.sqrt(n))
+print('t값 =',t)
+# from scipy.stats import t 쓰면 t.cdf
+p = 1 - stats.t.cdf(t, n-1) # t값, 자유도 , 1 - P(t < 0.3617)
+print('p값 =',p)
 
+result = stats.ttest_1samp(data.coffee, mu, alternative='greater') # 실무용
+print(result)
 
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+if p<0.05 : print('H0기각')
+else : print('H0를 기각할 수 없음')
 
 
 
 # %%
 
 
+# 6장 확인문제 1 차이가 있는지 : 양측
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
 
+data = pd.read_excel("C:/파이썬자료/S기업_점심비용.xlsx") # 컬럼명 포함
+mu=6300
+n=100 # data.size
+print(data.describe()) # 참고용
+
+plt.hist(data, label='lunch Price', bins=7)
+plt.legend(); plt.show()
+
+
+t = (np.mean(data) - mu) / (np.std(data, ddof=1) / np.sqrt(n))
+print('t값 =',t)
+p = 1 - stats.t.cdf(t, n-1)
+print('p값 =',p)
+
+result = stats.ttest_1samp(data.lunch, mu, alternative='two-sided')
+print(result)
+
+if 2 * p < 0.05 : print('H0기각') # 양측이기 떄문
+else : print('H0를 기각할 수 없음')
+
+
+
+# %%
+
+
+# 6장 확인문제 2 차이가 있는지 : 양측
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+
+data = pd.read_csv("C:/파이썬자료/스마트폰_이용시간.csv", header = None) # 컬럼명 미포함
+mu=35
+n=40 # data.size
+print(data.describe()) # 참고용
+
+plt.hist(data, label='Phone times', bins=7)
+plt.legend(); plt.show()
+
+
+t = (np.mean(data) - mu) / (np.std(data, ddof=1) / np.sqrt(n))
+print('t값 =',t)
+p = 1 - stats.t.cdf(t, n-1)
+print('p값 =',p)
+
+result = stats.ttest_1samp(data, mu, alternative='two-sided') # 실무용
+print(result)
+
+if 2 * p < 0.05 : print('H0기각')
+else : print('H0를 기각할 수 없음')
+
+
+
+# %%
+
+
+# 6장 확인문제 3 더 많은 요금: 단측
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+
+data = pd.read_csv("C:/파이썬자료/스마트폰_이용요금.txt", header = None) # 컬럼명 미포함
+mu=68000
+n=80 # data.size
+print(data.describe()) # 참고용
+
+plt.hist(data, label='Phone times', bins=7)
+plt.legend(); plt.show()
+
+
+t = (np.mean(data) - mu) / (np.std(data, ddof=1) / np.sqrt(n))
+print('t값 =',t)
+p = 1 - stats.t.cdf(t, n-1)
+print('p값 =',p)
+
+result = stats.ttest_1samp(data, mu, alternative='greater') # 실무용
+print(result)
+
+if p < 0.05 : print('H0기각')
+else : print('H0를 기각할 수 없음')
 
 
 
