@@ -3782,6 +3782,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
 
+# H0: 점심 평균 비용 mu = 6300원
+# H1: 차이가 있다 mu != 6300원
+
 data = pd.read_excel("C:/파이썬자료/S기업_점심비용.xlsx") # 컬럼명 포함
 mu=6300
 n=100 # data.size
@@ -3813,6 +3816,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
 
+# H0: 주당 스마트폰 평균 이용 시간 mu = 35시간
+# H1: 차이가 있다 mu != 35시간
+
 data = pd.read_csv("C:/파이썬자료/스마트폰_이용시간.csv", header = None) # 컬럼명 미포함
 mu=35
 n=40 # data.size
@@ -3827,7 +3833,7 @@ print('t값 =',t)
 p = 1 - stats.t.cdf(t, n-1)
 print('p값 =',p)
 
-result = stats.ttest_1samp(data, mu, alternative='two-sided') # 실무용
+result = stats.ttest_1samp(data, mu, alternative='two-sided')
 print(result)
 
 if 2 * p < 0.05 : print('H0기각')
@@ -3844,8 +3850,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
 
-# 가설 H0: mu = 68000 어쩌고 저쩌고
-# 가설 H1: mu < 68000 더 많이 내고 저꺼고
+# 가설 H0: 스마트폰 이용 요금 월 평균 mu = 68000
+# 가설 H1: 더 많은 요금을 내고 있다 mu > 68000
 
 data = pd.read_csv("C:/파이썬자료/스마트폰_이용요금.txt", header = None) # 컬럼명 미포함
 mu=68000
