@@ -3877,38 +3877,60 @@ else : print('H0를 기각할 수 없음')
 # %%
 
 
-
-
-
-
-
-
-
+import pandas as pd
+from scipy import stats
+from matplotlib import pyplot as plt
+#----------- 길이 다른 두 표본 '분석'할 때는 파일 1개 오케이 --------------#
+data = pd.read_excel("C:/파이썬자료/성인_스마트폰_이용시간.xlsx")
+print(data.describe())
+data.boxplot(column=['male', 'female'], vert=False)
+# vert : true면 세로로, false면 가로로
+plt.show()
+#----------- 길이 다른 두 표본이므로 개별 파일 읽어주세요 ---------------#
+d1 = pd.read_excel("C:/파이썬자료/성인_스마트폰_이용시간_남자.xlsx")
+d2 = pd.read_excel("C:/파이썬자료/성인_스마트폰_이용시간_여자.xlsx")
+result = stats.ttest_ind(d1.male, d2.female, alternative='two-sided')
+# 분산이 같음
+# p > 0.05 H0 기각 할 수 없다 - H0가 이겼다
+# p < 0.05 H0 기각 할 수 있다 - H1가 이겼다
+print(result)
+# 차이가 있다
 
 
 
 # %%
 
 
+import pandas as pd
+from scipy import stats
+from matplotlib import pyplot as plt
+data = pd.read_excel("C:/파이썬자료/대학생_수면시간.xlsx")
+print(data.describe())
+data.boxplot(column=['male', 'female'], vert=False)
+plt.show()
 
-
-
-
-
-
+d1 = pd.read_excel("C:/파이썬자료/대학생_수면시간_남자.xlsx")
+d2 = pd.read_excel("C:/파이썬자료/대학생_수면시간_여자.xlsx")
+result = stats.ttest_ind(d1.male, d2.female, equal_var=False, alternative='two-sided')
+# std 차이가 커서 분산이 다르다
+# p가 0.05보다 작으므로 H0 기각할 수 있다
+print(result)
 
 
 
 # %%
 
 
-
-
-
-
-
-
-
+import pandas as pd
+from scipy import stats
+a1 = pd.read_excel("C:/파이썬자료/성인_스마트폰_이용시간_남자.xlsx")
+a2 = pd.read_excel("C:/파이썬자료/성인_스마트폰_이용시간_여자.xlsx")
+b1 = pd.read_excel("C:/파이썬자료/대학생_수면시간_남자.xlsx")
+b2 = pd.read_excel("C:/파이썬자료/대학생_수면시간_여자.xlsx")
+result1 = stats.levene(a1.male, a2.female, center='mean')
+result2 = stats.levene(b1.male, b2.female, center='mean')
+print(result1)
+print(result2)
 
 
 
