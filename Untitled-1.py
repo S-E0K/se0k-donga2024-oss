@@ -4015,6 +4015,7 @@ data.boxplot(column=['midterm', 'final'], vert=False)
 plt.show()
 result = stats.ttest_rel(data.midterm, data.final, alternative='less')
 # 부등호 방향에 따라 greater less 달라진다
+# >
 print(result)
 # p 값이 0.05보다 현저하게 작으므로 H0 기각. 즉, 중간보다 기말이 성적 더 높다
 
@@ -4024,11 +4025,17 @@ print(result)
 
 
 # 6장 확인문제 6
-
-
-
-
-
+import pandas as pd
+from scipy import stats
+from matplotlib import pyplot as plt
+data = pd.read_excel("C:/파이썬자료/체중비교.xlsx")
+print(data[['before','after']].describe())
+data.boxplot(column=['before', 'after'], vert=False)
+plt.show()
+result = stats.ttest_rel(data.before, data.after, alternative='greater')
+# 부등호 방향에 따라 greater less 달라진다
+print(result)
+# p 값이 0.05보다 현저하게 작으므로 H0 기각. 즉, 체중이 줄었다
 
 
 
