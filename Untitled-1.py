@@ -3931,6 +3931,7 @@ b1 = pd.read_excel("C:/파이썬자료/대학생_수면시간_남자.xlsx")
 b2 = pd.read_excel("C:/파이썬자료/대학생_수면시간_여자.xlsx")
 result1 = stats.levene(a1.male, a2.female, center='mean')
 result2 = stats.levene(b1.male, b2.female, center='mean')
+#levene는 var에 true false를 뭘 넣을지 판단하는 함수
 print(result1)
 print(result2)
 
@@ -3939,56 +3940,90 @@ print(result2)
 # %%
 
 
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
+# 예제 5
+import pandas as pd
+from scipy import stats
+from matplotlib import pyplot as plt
+data = pd.read_excel("C:/파이썬자료/피트니스_결과.xlsx")
+print(data[['before','after']].describe()) # fm 제외하고 출력
+data.boxplot(column=['before', 'after'], vert=False)
+plt.show()
+result=stats.ttest_rel(data.before, data.after, alternative='greater')
+# greater: before > after 위치 중요
+# less   : after > before
+print(result)
 
 
 
 # %%
 
 
+# 6장 확인문제 4
+import pandas as pd
+from scipy import stats
+a1 = pd.read_excel("C:/파이썬자료/배터리_지속시간_korea.xlsx")
+a2 = pd.read_excel("C:/파이썬자료/배터리_지속시간_china.xlsx")
+result1 = stats.levene(a1.korea, a2.china, center='mean')
+print(result1)
+# p < 0.05 H0 기각, 즉, 이분산. equal_var=False
 
+data = pd.read_excel("C:/파이썬자료/배터리_지속시간.xlsx")
+print(data.describe())
+data.boxplot(column=['china', 'korea'], vert=False)
+plt.show()
 
-
-
-
-
+d1 = pd.read_excel("C:/파이썬자료/배터리_지속시간_korea.xlsx")
+d2 = pd.read_excel("C:/파이썬자료/배터리_지속시간_china.xlsx")
+result2 = stats.ttest_ind(d1.korea, d2.china, equal_var=False, alternative='two-sided')
+print(result2)
+# p 값이 현저하게 작으므로 H0 기각. 즉, 두 공장 배터리 지속시간은 차이가 있다
 
 
 
 # %%
 
 
+# 6장 확인문제 5
+import pandas as pd
+from scipy import stats
+a1 = pd.read_excel("C:/파이썬자료/주당_근로시간.xlsx")
+result1 = stats.levene(a1.daejeon, a1.gwangju, center='mean')
+print(result1)
 
+data = pd.read_excel("C:/파이썬자료/주당_근로시간.xlsx")
+print(data.describe())
+data.boxplot(column=['daejeon', 'gwangju'], vert=False)
+plt.show()
 
-
-
-
-
-
+d1 = pd.read_excel("C:/파이썬자료/주당_근로시간.xlsx")
+result2 = stats.ttest_ind(d1.daejeon, d1.gwangju, equal_var=False, alternative='two-sided')
+print(result2)
+# p 값이 작으므로 H0 기각, 두 지역 근로시간 차이가 있다
 
 
 
 # %%
 
 
+# 6장 확인문제 5
+import pandas as pd
+from scipy import stats
+from matplotlib import pyplot as plt
+data = pd.read_excel("C:/파이썬자료/확률및통계_성적.xlsx")
+print(data[['midterm','final']].describe())
+data.boxplot(column=['midterm', 'final'], vert=False)
+plt.show()
+result = stats.ttest_rel(data.midterm, data.final, alternative='less')
+# 부등호 방향에 따라 greater less 달라진다
+print(result)
+# p 값이 0.05보다 현저하게 작으므로 H0 기각. 즉, 중간보다 기말이 성적 더 높다
 
+
+
+# %%
+
+
+# 6장 확인문제 6
 
 
 
