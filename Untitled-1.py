@@ -3868,6 +3868,8 @@ p = 1 - stats.t.cdf(t, n-1)
 print('p값 =',p)
 
 result = stats.ttest_1samp(data, mu, alternative='greater') # 실무용
+# greater는 1 - cdf
+# less는 그냥 cdf
 print(result)
 
 if p < 0.05 : print('H0기각')
