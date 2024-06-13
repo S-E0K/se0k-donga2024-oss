@@ -3955,6 +3955,20 @@ print(result)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # %%
 
 
@@ -3980,6 +3994,16 @@ print(result2)
 
 
 
+
+
+
+
+
+
+
+
+
+
 # %%
 
 
@@ -4002,6 +4026,19 @@ print(result2)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # %%
 
 
@@ -4018,6 +4055,18 @@ result = stats.ttest_rel(data.midterm, data.final, alternative='less')
 # >
 print(result)
 # p 값이 0.05보다 현저하게 작으므로 H0 기각. 즉, 중간보다 기말이 성적 더 높다
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
