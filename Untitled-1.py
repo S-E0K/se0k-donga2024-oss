@@ -4005,7 +4005,7 @@ print(result2)
 # %%
 
 
-# 6장 확인문제 5
+# 6장 확인문제 6
 import pandas as pd
 from scipy import stats
 from matplotlib import pyplot as plt
@@ -4024,7 +4024,7 @@ print(result)
 # %%
 
 
-# 6장 확인문제 6
+# 6장 확인문제 7
 import pandas as pd
 from scipy import stats
 from matplotlib import pyplot as plt
