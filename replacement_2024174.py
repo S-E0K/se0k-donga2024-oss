@@ -7,20 +7,24 @@ def replacement_selection(input_file, output_file):
 
     for i in range(test_num):
         n = int(f.readline().strip())
-        numbers = list(map(int, f.readline().strip().split()))
+        
+        line = f.readline()
+        line = line.strip()
+        parts = line.split()
+        numbers = list(map(int, parts))
 
         buffer = []
         runs = []
         current_run = []
-        smallest_in_buffer = None
+        smallest = None
 
         for num in numbers:
             if len(buffer) < 5:
                 buffer.append(num)
                 buffer.sort()
             else:
-                if smallest_in_buffer is None:
-                    smallest_in_buffer = buffer.pop(0)
+                if smallest is None:
+                    smallest = buffer.pop(0)
                 else:
                     next_in_buffer = None
                     for i in buffer:
@@ -30,21 +34,21 @@ def replacement_selection(input_file, output_file):
 
                     if next_in_buffer is not None:
                         buffer.remove(next_in_buffer)
-                        smallest_in_buffer = next_in_buffer
+                        smallest = next_in_buffer
                     else:
                         runs.append(current_run)
                         current_run = []
-                        smallest_in_buffer = buffer.pop(0)
+                        smallest = buffer.pop(0)
 
-                if not current_run or smallest_in_buffer >= current_run[-1]:
-                    current_run.append(smallest_in_buffer)
+                if not current_run or smallest >= current_run[-1]:
+                    current_run.append(smallest)
 
                 buffer.append(num)
                 buffer.sort()
 
         while buffer:
-            if smallest_in_buffer is None:
-                smallest_in_buffer = buffer.pop(0)
+            if smallest is None:
+                smallest = buffer.pop(0)
             else:
                 next_in_buffer = None
                 for i in buffer:
@@ -54,14 +58,14 @@ def replacement_selection(input_file, output_file):
 
                 if next_in_buffer is not None:
                     buffer.remove(next_in_buffer)
-                    smallest_in_buffer = next_in_buffer
+                    smallest = next_in_buffer
                 else:
                     runs.append(current_run)
                     current_run = []
-                    smallest_in_buffer = buffer.pop(0)
+                    smallest = buffer.pop(0)
 
-            if not current_run or smallest_in_buffer >= current_run[-1]:
-                current_run.append(smallest_in_buffer)
+            if not current_run or smallest >= current_run[-1]:
+                current_run.append(smallest)
 
         if current_run:
             runs.append(current_run)
