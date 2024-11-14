@@ -1,84 +1,99 @@
 
 
-def replacement_selection(input_file, output_file):
-    f = open(input_file, 'r')
-    test_num = int(f.readline().strip())
+
+
+
+
+
+
+
+def replacementSelection(readFile, writeFile) :
+    readNum = int(readFile.readline().strip())
     results = []
 
-    for i in range(test_num):
-        n = int(f.readline().strip())
-        
-        line = f.readline()
-        line = line.strip()
+    for i in range(readNum) :
+        n = int(readFile.readline().strip())
+        numbers = []
+        line = readFile.readline().strip()
         parts = line.split()
-        numbers = list(map(int, parts))
+        for i in range(n) :
+            numbers.append(int(parts[i]))
 
         buffer = []
         runs = []
-        current_run = []
+        currentRun = []
         smallest = None
-
-        for num in numbers:
-            if len(buffer) < 5:
-                buffer.append(num)
-                buffer.sort()
-            else:
-                if smallest is None:
-                    smallest = buffer.pop(0)
+        
+        if len(numbers) <= 5 :
+            buffer.extend(numbers)
+            buffer.sort()
+            currentRun.extend(buffer)
+            runs.append(currentRun)
+        else :
+            for i in range(len(numbers)) :
+                num = numbers[i]
+                if len(buffer) < 5 :
+                    buffer.append(num)
+                    buffer.sort()
                 else:
-                    next_in_buffer = None
-                    for i in buffer:
-                        if i >= current_run[-1]:
-                            next_in_buffer = i
-                            break
-
-                    if next_in_buffer is not None:
-                        buffer.remove(next_in_buffer)
-                        smallest = next_in_buffer
-                    else:
-                        runs.append(current_run)
-                        current_run = []
+                    if smallest is None :
                         smallest = buffer.pop(0)
+                    else:
+                        nextNum = None
+                        for value in buffer :
+                            if not currentRun or value >= currentRun[-1] :
+                                nextNum = value
+                                break
 
-                if not current_run or smallest >= current_run[-1]:
-                    current_run.append(smallest)
+                        if nextNum is None :
+                            runs.append(list(currentRun))
+                            currentRun = []
+                            smallest = buffer.pop(0)
+                        else :
+                            buffer.remove(nextNum)
+                            smallest = nextNum
 
-                buffer.append(num)
-                buffer.sort()
+                    if not currentRun or smallest >= currentRun[-1] :
+                        currentRun.append(smallest)
 
-        while buffer:
-            if smallest is None:
-                smallest = buffer.pop(0)
-            else:
-                next_in_buffer = None
-                for i in buffer:
-                    if i >= current_run[-1]:
-                        next_in_buffer = i
+                    buffer.append(num)
+                    buffer.sort()
+
+            for i in range(len(buffer)) :
+                nextNum = None
+                for value in buffer:
+                    if not currentRun or value >= currentRun[-1] :
+                        nextNum = value
                         break
 
-                if next_in_buffer is not None:
-                    buffer.remove(next_in_buffer)
-                    smallest = next_in_buffer
-                else:
-                    runs.append(current_run)
-                    current_run = []
+                if nextNum is None :
+                    runs.append(list(currentRun))
+                    currentRun = []
                     smallest = buffer.pop(0)
+                else :
+                    buffer.remove(nextNum)
+                    smallest = nextNum
 
-            if not current_run or smallest >= current_run[-1]:
-                current_run.append(smallest)
+                if not currentRun or smallest >= currentRun[-1] :
+                    currentRun.append(smallest)
 
-        if current_run:
-            runs.append(current_run)
+        if currentRun:
+            runs.append(currentRun)
 
-        results.append(f"{len(runs)}")
+        doubleRuns = []
         for run in runs:
+            if run not in doubleRuns:
+                doubleRuns.append(run)
+
+        results.append(str(len(doubleRuns)))
+        for run in doubleRuns:
             results.append(" ".join(map(str, run)))
 
-    f.close()
-
-    f = open(output_file, 'w')
-    f.write("\n".join(results))
-    f.close()
+    writeFile.write("\n".join(results))
 
 
-replacement_selection('replacement_input.txt', 'replacement_output.txt')
+readFile = open('replacement_input.txt', 'r')
+writeFile = open('replacement_output.txt', 'w')
+replacementSelection(readFile, writeFile)
+readFile.close()
+writeFile.close()
