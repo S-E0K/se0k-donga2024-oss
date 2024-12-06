@@ -1,5 +1,5 @@
 class TreeNode:
-    def __init__(self, newItem, left=None, right=None):  # default value로 left와 right를 None으로 설정
+    def __init__(self, newItem, left=None, right=None):
         self.item = newItem
         self.left = left
         self.right = right
@@ -8,28 +8,30 @@ class BinarySearchTree:
     def __init__(self):
         self.__root = None
 
-    def search(self, x) -> str:  # 반환 타입을 TreeNode에서 str로 수정
+    def search(self, x) -> str:
         return self.__searchItem(self.__root, x, "R")
 
-    def __searchItem(self, tNode: TreeNode, x, path: str) -> str:  # 반환 타입을 TreeNode에서 str로 수정
+    def __searchItem(self, tNode: TreeNode, x, path: str) -> str:
         if tNode is None:
             return path  # 노드가 없을 때 경로 반환
         elif x == tNode.item:
             return path  # 키를 찾았을 때 경로 반환
         elif x < tNode.item:
-            return self.__searchItem(tNode.left, x, path + "0")  # 값이 작으면 왼쪽으로 이동 (경로 추가 수정)
+            # 변경점: `path = "0"` 대신, `path + "0"`을 사용하여 기존 경로에 이어붙입니다.
+            return self.__searchItem(tNode.left, x, path + "0")
         else:
-            return self.__searchItem(tNode.right, x, path + "1")  # 값이 크면 오른쪽으로 이동 (경로 추가 수정)
+            # 변경점: `path = "1"` 대신, `path + "1"`을 사용하여 기존 경로에 이어붙입니다.
+            return self.__searchItem(tNode.right, x, path + "1")
 
     def insert(self, newItem):
         self.__root = self.__insertItem(self.__root, newItem)
 
     def __insertItem(self, tNode: TreeNode, newItem) -> TreeNode:
         if tNode is None:
-            return TreeNode(newItem)  # 새로운 노드를 생성하여 반환
+            return TreeNode(newItem)  # 노드가 없으면 새 노드 생성
         elif newItem < tNode.item:
             tNode.left = self.__insertItem(tNode.left, newItem)  # 왼쪽 서브트리에 삽입
-        elif newItem > tNode.item:  # 중복값을 무시하도록 변경
+        elif newItem > tNode.item:
             tNode.right = self.__insertItem(tNode.right, newItem)  # 오른쪽 서브트리에 삽입
         return tNode  # 수정된 트리 반환
 
@@ -70,11 +72,12 @@ class BinarySearchTree:
             return (rtnItem, tNode)
 
     def isEmpty(self) -> bool:
-        return self.__root is None  # 수정: self.NIL 대신 None 사용
+        # 변경점: `self.NIL`을 `None`으로 수정했습니다.
+        return self.__root is None
 
     def clear(self):
-        self.__root = None  # 수정: self.NIL 대신 None 사용
-
+        # 변경점: `self.NIL`을 `None`으로 수정했습니다.
+        self.__root = None
 
 def process_input_output(readFile, writeFile):
     lines = readFile.readlines()
