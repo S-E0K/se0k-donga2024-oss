@@ -17,10 +17,10 @@ class BinarySearchTree :
     def __init__(self):
         self.__root = None
 
-    def search(self, x) -> str :
+    def search(self, x) -> TreeNode :
         return self.__searchItem(self.__root, x, "R")
 
-    def __searchItem(self, tNode: TreeNode, x, path: str) -> str :
+    def __searchItem(self, tNode: TreeNode, x, path: str) -> TreeNode :
         if (tNode == None) :
             return path
         elif (x == tNode.item) :
