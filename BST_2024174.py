@@ -83,7 +83,7 @@ class BinarySearchTree :
         self.__root = None
 
 
-def process_input_output(readFile, writeFile)
+def process_input_output(readFile, writeFile) :
     lines = readFile.readlines()
     line = 0
     t = int(lines[line].strip())
