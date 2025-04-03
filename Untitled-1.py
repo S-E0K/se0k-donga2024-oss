@@ -4041,48 +4041,61 @@ print(result)
 
 
 # %%
+import pymysql
+
+connect = pymysql.connect(host='127.0.0.1', user='root',
+password='1234', db='shop_db', charset='utf8')
+cursor = connect.cursor()
+sql = "create table usertable \
+(userid char(10), username char(10), email char(20), regyear int)"
+cursor.execute(sql)
+connect.commit() # DDL은 대부분 암시적 커밋
+connect.close()
+print('테이블 생성 완료!' ) 
 
 
+# %%
 
+import pymysql
 
-
-
-
-
-
-
-
+connect = pymysql.connect(host='127.0.0.1', user='root',
+password='1234', db='shop_db', charset='utf8')
+cursor = connect.cursor()
+count = 0
+while (True) :
+    data1 = input("사용자 ID (Q:종료)==> ")
+    if data1 == "q" or data1 == "Q" :
+        break;
+    data2 = input("사용자 이름 ==> ")
+    data3 = input("사용자 이메일 ==> ")
+    data4 = input("가입 연도 (정수) ==> ")
+    sql = "INSERT INTO usertable VALUES \
+        ('" + data1 + "','" + data2 + "','" + data3 + "',"+ data4 + ")"
+    cursor.execute(sql)
+    count += 1
+    print('--------------')
+connect.commit() # 데이터가 바뀌는 DML은 커밋 해줘야 실제 저장됩니다.
+connect.close()
+print(count, ' 건 등록 완료')
 
 
 
 
 # %%
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
+import pymysql
+connect = pymysql.connect(host='127.0.0.1', user='root',
+password='1234', db='shop_db', charset='utf8')
+cursor = connect.cursor()
+cursor.execute("SELECT * FROM usertable")
+print("사용자ID 사용자이름 이메일 가입연도")
+print("---------------------------------------------------------")
+while (True) :
+    row = cursor.fetchone() # select 해 온 각 행(튜플)
+    if row== None :
+        break
+    print("%-10s %-10s %-20s %d" % (row[0], row[1], row[2], row[3]))
+connect.close()
 
 
 
