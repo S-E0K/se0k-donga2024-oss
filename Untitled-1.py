@@ -451,21 +451,6 @@ print(count) # 값 출력
 
 
 
-A
-BABA
-
-if(len(S) > len(T)): print(0)
-else:
-    while(len(S) <= len(T)):
-        if(S == T):
-            print(1)
-            break
-        else:
-            if(T[-1] == "A"): 
-                T = first(T)
-            if:T = second(T)
-            print(T)
-    else: print(0)
 
 
 
@@ -942,17 +927,6 @@ plt.legend(loc='best', ncol=2)
 plt.show()
 
 # %%
-
-import matplotlib.pyplot as plt
-ratio = [22.3, 24, 15.7, 38]
-labels = [pizza, hamburger, pasta, chicken] # ''로 감싸기
-plt.circle(ratio, labels=labels, autopct='%.1%%') # plt.pie, %.1f%% 
-plt.show()
-
-
-# %%
-
-
 #3
 #import pandas as pd
 import matplotlib.pyplot as plt
@@ -1509,24 +1483,7 @@ def csvSample():
 def excelSample():
     return "file_df = pd.read_excel(\"C:/'''/sample4.xlsx\")"
 
-print("스터지스: ", BoSeokDonga.stusis(36))
-print("csv 예시: ", BoSeokDonga.csvSample())
-print("엑셀 예시: ", BoSeokDonga.excelSample())
 
-
-# %%
-
-
-from BoSeokDonga import BoSeokDonga
-import pandas as pd
-
-print("스터지스: ", BoSeokDonga.stusis(32))
-print("csv 예시: ", BoSeokDonga.csvSample())
-print("엑셀 예시: ", BoSeokDonga.excelSample())
-
-
-file_data = pd.read_csv("C:/파이썬자료/sample/sample1.csv") # 데이터 프레임
-print(file_data[0:5]) # 맨 위 다섯 행만 보겠다 - 일부 출력
 
 
 # %%
@@ -1841,7 +1798,7 @@ class LinkedListBasic:
 		for index in range(len(a)):
 			self.append(a[index])
 
-	def __findNode(self, x) -> (ListNode, ListNode):
+	def __findNode(self, x):
 		prev = self.__head  # 더미 헤드
 		curr = prev.next    # 0번 노드
 		while curr != None:
@@ -1924,26 +1881,6 @@ print(a, b)
 # %%
 
 
-def printInterval(self, i, j) -> None:
-    index = 0
-    for element in self:
-        if :
-            print(element, end = ' ')
-        if (j == index):
-            
-        index += 1
-print()
-
-
-
-
-
-
-
-
-# %%
-
-
 a = [5, 2, 6, 2 , 1, 3]
 a.pop(0)
 a.insert(0, 99)
@@ -1954,15 +1891,6 @@ print(len(a))
 
 
 
-
-# %%
-from stack.listStack import *
-from queue.listQueue import *
-
-s = ListStack(); q = ListQueue()
-
-str = "abcd"
-print(str[1])
 
 
 # %%
