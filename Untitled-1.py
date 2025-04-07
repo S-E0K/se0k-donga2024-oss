@@ -4126,6 +4126,123 @@ connect.close()
 
 # %%
 
+import tkinter
+window = tkinter.Tk()
+
+window.title('GUI 연습 화면')
+window.geometry('400x200')
+
+a = tkinter.Label(window, text='SQL은')
+b = tkinter.Label(window, text='very easy합니다.',
+font=('consolas', 20), bg='skyblue', fg='black')
+a.pack()
+b.pack()
+
+
+window.mainloop()
+
+
+
+
+# %%
+
+
+import pymysql
+import tkinter
+import tkinter.messagebox as mbox
+def insertData() :
+    connect = pymysql.connect(host='127.0.0.1', user='root',
+        password='1234', db='shop_db', charset='utf8')
+    cursor = connect.cursor()
+    data1 = edt1.get(); data2 = edt2.get(); data3 = edt3.get(); data4 = edt4.get()
+    sql = "INSERT INTO usertable VALUES(%s, %s, %s, %s)"
+    data = (data1, data2, data3, data4)
+    cursor.execute(sql, data)
+    connect.commit()
+    connect.close()
+    mbox.showinfo('성공', '1건 등록 완료')
+    selectData()
+def selectData() :
+    strData1, strData2, strData3, strData4 = [], [], [], []
+    strData1.append("사용자 ID"); strData2.append("사용자 이름")
+    strData3.append("이메일"); strData4.append("출생연도 (숫자)")
+    strData1.append("-------------"); strData2.append("-------------")
+    strData3.append("-------------"); strData4.append("-------------")
+    connect = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='shop_db', charset='utf8')
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM userTable order by userid")
+    while (True) :
+        row = cursor.fetchone()
+        if row== None : break;
+        strData1.append(row[0]); strData2.append(row[1]); strData3.append(row[2]); strData4.append(row[3])
+    listData1.delete(0,listData1.size() - 1); listData2.delete(0,listData2.size() - 1)
+    listData3.delete(0,listData3.size() - 1); listData4.delete(0,listData4.size() - 1)
+    for item1, item2, item3, item4 in zip(strData1, strData2, strData3, strData4 ):
+        listData1.insert('end', item1); listData2.insert('end', item2)
+        listData3.insert('end', item3); listData4.insert('end', item4)
+    connect.close() 
+## 메인 코드부
+window = tkinter.Tk()
+window.geometry("600x300")
+window.title('완전한 GUI 응용 프로그램')
+edtFrame = tkinter.Frame(window); edtFrame.pack()
+listFrame = tkinter.Frame(window); listFrame.pack(side ='bottom',fill='both', expand=1)
+edt1= tkinter.Entry(edtFrame, width=10); edt1.pack(side='left',padx=10,pady=10)
+edt2= tkinter.Entry(edtFrame, width=10); edt2.pack(side='left',padx=10,pady=10)
+edt3= tkinter.Entry(edtFrame, width=10); edt3.pack(side='left',padx=10,pady=10)
+edt4= tkinter.Entry(edtFrame, width=10); edt4.pack(side='left',padx=10,pady=10)
+btnInsert = tkinter.Button(edtFrame, text="입력", command = insertData)
+btnInsert.pack(side='left',padx=10,pady=10)
+btnSelect = tkinter.Button(edtFrame, text="조회", command =selectData )
+btnSelect.pack(side='left',padx=10,pady=10)
+listData1 = tkinter.Listbox(listFrame,bg = 'yellow'); listData1.pack(side='left',fill='both', expand=1)
+listData2 = tkinter.Listbox(listFrame,bg = 'yellow'); listData2.pack(side='left',fill='both', expand=1)
+listData3 = tkinter.Listbox(listFrame,bg = 'yellow'); listData3.pack(side='left',fill='both', expand=1)
+listData4 = tkinter.Listbox(listFrame,bg = 'yellow'); listData4.pack(side='left',fill='both', expand=1)
+window.mainloop()
+
+
+
+
+
+
+
+
+
+# %%
+
+
+import tkinter
+import tkinter.messagebox as mbox
+def function1() :
+    mbox.showinfo('Hello', '메세지박스 띄우는 거 쉬워요')
+window = tkinter.Tk()
+window.geometry('200x200')
+a = tkinter.Button(window, text='클릭하세요',
+    fg='navy', bg='cyan', command=function1)
+a.pack(expand = 1)
+window.mainloop()
+
+
+
+
+
+
+
+
+# %%
+
+
+import tkinter
+window = tkinter.Tk()
+window.geometry('400x200')
+a = tkinter.Button(window, text='database1')
+b = tkinter.Button(window, text='database2')
+c = tkinter.Button(window, text='database3')
+a.pack(side='left')
+b.pack(side='left')
+c.pack(side='left')
+window.mainloop()
 
 
 
@@ -4139,33 +4256,16 @@ connect.close()
 # %%
 
 
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
-
+import tkinter
+window = tkinter.Tk()
+window.geometry('400x200')
+a = tkinter.Button(window, text='database1')
+b = tkinter.Button(window, text='database2')
+c = tkinter.Button(window, text='database3')
+a.pack(side='top', fill='x', padx=10, pady=10)
+b.pack(side='top', fill='x', padx=10, pady=10)
+c.pack(side='top', fill='x', padx=10, pady=10)
+window.mainloop()
 
 
 
@@ -4177,19 +4277,21 @@ connect.close()
 # %%
 
 
-
-
-
-
-
-
-
-
-
-# %%
-
-
-
+import tkinter
+window = tkinter.Tk()
+window.geometry('200x250')
+upFrame = tkinter.Frame(window)
+downFrame = tkinter.Frame(window)
+upFrame.pack()
+downFrame.pack()
+box1 = tkinter.Entry(upFrame, width = 10)
+box1.pack(padx = 20, pady = 20)
+box2 = tkinter.Listbox(downFrame, bg = 'yellow')
+box2.pack()
+box2.insert('end', '하나')
+box2.insert('end', '둘')
+box2.insert('end', '셋')
+window.mainloop()
 
 
 
