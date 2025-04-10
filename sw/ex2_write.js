@@ -8,7 +8,7 @@ const rl = readline.createInterface({
 
 function procFile() {
     rl.question('파일 내용을 입력해주세요 : ', (data) => {
-        fs.writeFile('a.out', data, (err) => {
+        fs.writeFile('./sw/a.out', data, (err) => {
             if (err) {
               console.error('파일을 쓰는 동안 오류가 발생했습니다:', err);
             } else {

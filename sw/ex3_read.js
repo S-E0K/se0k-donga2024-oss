@@ -5,7 +5,8 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
+// node ./sw/ex3_read.js
+// 경로: ./sw/a.out
 function procFile() {
     rl.question('파일 경로를 입력해주세요 : ', (filePath) => {
         fs.readFile(filePath, 'utf8', (err, data) => {
