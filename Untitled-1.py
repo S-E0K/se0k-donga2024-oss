@@ -4353,6 +4353,7 @@ def selectData() :
         strData1.append(row[0]); strData2.append(row[1]); strData3.append(row[2]); strData4.append(row[3])
     listData1.delete(0,listData1.size() - 1); listData2.delete(0,listData2.size() - 1)
     listData3.delete(0,listData3.size() - 1); listData4.delete(0,listData4.size() - 1)
+    # 화면 지우는 용도의 delete
     for item1, item2, item3, item4 in zip(strData1, strData2, strData3, strData4 ):
         listData1.insert('end', item1); listData2.insert('end', item2)
         listData3.insert('end', item3); listData4.insert('end', item4)
